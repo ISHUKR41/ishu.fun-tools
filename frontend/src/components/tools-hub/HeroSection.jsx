@@ -1,8 +1,13 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Search, Command, Sparkles, ArrowRight, FileText, Zap, Globe, Star } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { CountUp } from 'countup.js';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import './HeroSection.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const TRENDING_TOOLS = [
   { label: 'Merge PDF', slug: 'merge-pdf' },
@@ -22,6 +27,13 @@ const STATS = [
 export default function HeroSection({ onSearch }) {
   const [statsRef, statsInView] = useInView({ threshold: 0.3, triggerOnce: true });
   const counterRefs = useRef([]);
+  const heroRef = useRef();
+  const contentRef = useRef();
+  const badgeRef = useRef();
+  const titleRef = useRef();
+  const subtitleRef = useRef();
+  const searchRef = useRef();
+  const trendingRef = useRef();
 
   useEffect(() => {
     if (statsInView) {
@@ -29,12 +41,11 @@ export default function HeroSection({ onSearch }) {
         const el = counterRefs.current[i];
         if (el) {
           const cu = new CountUp(el, stat.value, {
-            duration: 2.5,
+            duration: 2,
             decimalPlaces: stat.decimals || 0,
             separator: ',',
             suffix: stat.suffix,
             useEasing: true,
-            enableScrollSpy: false,
           });
           cu.start();
         }
@@ -42,42 +53,97 @@ export default function HeroSection({ onSearch }) {
     }
   }, [statsInView]);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      tl.fromTo(badgeRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6 }
+      )
+      .fromTo(titleRef.current.children,
+        { opacity: 0, y: 30, skewY: 1 },
+        { opacity: 1, y: 0, skewY: 0, duration: 0.7, stagger: 0.1 },
+        '-=0.3'
+      )
+      .fromTo(subtitleRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5 },
+        '-=0.3'
+      )
+      .fromTo(searchRef.current,
+        { opacity: 0, y: 16, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.5 },
+        '-=0.2'
+      )
+      .fromTo(trendingRef.current,
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.4 },
+        '-=0.2'
+      );
+
+      gsap.to('.hero__gradient-orb--1', {
+        yPercent: -15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.5,
+        },
+      });
+      gsap.to('.hero__gradient-orb--2', {
+        yPercent: 12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.5,
+        },
+      });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="hero" id="hero-section">
-      {/* Background elements */}
+    <section className="hero" id="hero-section" ref={heroRef}>
       <div className="hero__bg">
         <div className="hero__gradient-orb hero__gradient-orb--1" />
         <div className="hero__gradient-orb hero__gradient-orb--2" />
         <div className="hero__gradient-orb hero__gradient-orb--3" />
         <div className="hero__grid-pattern" />
+        <svg className="hero__svg-lines" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <line x1="0" y1="200" x2="1200" y2="400" stroke="rgba(99,102,241,0.04)" strokeWidth="1" />
+          <line x1="0" y1="350" x2="1200" y2="150" stroke="rgba(139,92,246,0.03)" strokeWidth="1" />
+          <circle cx="900" cy="100" r="150" stroke="rgba(99,102,241,0.05)" strokeWidth="1" fill="none" />
+          <circle cx="300" cy="480" r="100" stroke="rgba(236,72,153,0.04)" strokeWidth="1" fill="none" />
+        </svg>
       </div>
 
-      <div className="hero__content container">
-        {/* Eyebrow badge */}
-        <div className="hero__badge animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+      <div className="hero__content container" ref={contentRef}>
+        <div className="hero__badge" ref={badgeRef} style={{ opacity: 0 }}>
           <Sparkles size={14} />
           <span>120+ Professional PDF Tools — Free Forever</span>
         </div>
 
-        {/* Headline */}
-        <h1 className="hero__title">
-          <span className="hero__title-line animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <h1 className="hero__title" ref={titleRef}>
+          <span className="hero__title-line" style={{ opacity: 0 }}>
             Every PDF Tool
           </span>
-          <span className="hero__title-line hero__title-gradient animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
+          <span className="hero__title-line hero__title-gradient" style={{ opacity: 0 }}>
             You'll Ever Need.
           </span>
         </h1>
 
-        {/* Subtitle */}
-        <p className="hero__subtitle animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+        <p className="hero__subtitle" ref={subtitleRef} style={{ opacity: 0 }}>
           Merge, split, compress, convert — 120+ powerful tools.
           <br />
           Free, fast, and secure. Used by millions worldwide.
         </p>
 
-        {/* Search bar */}
-        <div className="hero__search-wrapper animate-fade-in-up" style={{ animationDelay: '0.65s' }}>
+        <div className="hero__search-wrapper" ref={searchRef} style={{ opacity: 0 }}>
           <div className="hero__search" id="hero-search">
             <Search size={18} className="hero__search-icon" />
             <input
@@ -93,28 +159,27 @@ export default function HeroSection({ onSearch }) {
           </div>
         </div>
 
-        {/* Trending tags */}
-        <div className="hero__trending animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+        <div className="hero__trending" ref={trendingRef} style={{ opacity: 0 }}>
           <span className="hero__trending-label">Popular:</span>
           <div className="hero__trending-tags">
             {TRENDING_TOOLS.map((tool) => (
-              <a key={tool.slug} href={`#${tool.slug}`} className="hero__trending-tag">
+              <Link key={tool.slug} to={`/tools/${tool.slug}`} className="hero__trending-tag">
                 {tool.label}
                 <ArrowRight size={12} />
-              </a>
+              </Link>
             ))}
           </div>
         </div>
 
-        {/* Stats row */}
         <div className="hero__stats" ref={statsRef}>
           {STATS.map((stat, i) => (
-            <div key={stat.label} className="hero__stat animate-fade-in-up" style={{ animationDelay: `${0.9 + i * 0.1}s` }}>
+            <div
+              key={stat.label}
+              className="hero__stat animate-fade-in-up"
+              style={{ animationDelay: `${0.9 + i * 0.1}s` }}
+            >
               <stat.icon size={18} className="hero__stat-icon" />
-              <span
-                className="hero__stat-value"
-                ref={(el) => (counterRefs.current[i] = el)}
-              >
+              <span className="hero__stat-value" ref={(el) => (counterRefs.current[i] = el)}>
                 0
               </span>
               <span className="hero__stat-label">{stat.label}</span>

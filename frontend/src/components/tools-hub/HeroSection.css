@@ -19,37 +19,35 @@
 .hero__gradient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(60px);
   opacity: 0.5;
-  animation: float-slow 12s ease-in-out infinite;
+  will-change: opacity;
+  contain: layout paint;
 }
 
 .hero__gradient-orb--1 {
-  width: 600px;
-  height: 600px;
-  top: -15%;
-  right: -5%;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
-  animation-delay: 0s;
+  width: 700px;
+  height: 700px;
+  top: -20%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 65%);
 }
 
 .hero__gradient-orb--2 {
-  width: 500px;
-  height: 500px;
-  bottom: -10%;
-  left: -10%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-  animation-delay: -4s;
+  width: 600px;
+  height: 600px;
+  bottom: -15%;
+  left: -15%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, transparent 65%);
 }
 
 .hero__gradient-orb--3 {
-  width: 400px;
-  height: 400px;
-  top: 40%;
-  left: 50%;
+  width: 500px;
+  height: 500px;
+  top: 35%;
+  left: 45%;
   transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 70%);
-  animation-delay: -8s;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 65%);
 }
 
 .hero__grid-pattern {
@@ -59,6 +57,14 @@
   background-size: 40px 40px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.hero__svg-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 /* ─── CONTENT ─── */

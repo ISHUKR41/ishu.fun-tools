@@ -7,16 +7,17 @@ import './ToolCard.css';
 
 const ToolCard = memo(function ToolCard({ tool, index }) {
   const Icon = LucideIcons[tool.icon] || LucideIcons.FileText;
+  const groupDelay = Math.min(Math.floor(index / 4) * 0.06, 0.24);
 
   return (
     <motion.div
       className="tool-card"
       id={`tool-${tool.slug}`}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.5, delay: Math.min(index * 0.03, 0.3), ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -6, transition: { duration: 0.25 } }}
+      viewport={{ once: true, amount: 0.05, margin: '0px 0px -30px 0px' }}
+      transition={{ duration: 0.35, delay: groupDelay, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -5, transition: { duration: 0.18 } }}
       style={{ '--card-color': tool.color, position: 'relative' }}
     >
       <Link to={`/tools/${tool.slug}`} style={{position: 'absolute', inset: 0, zIndex: 10}} aria-label={tool.name} />

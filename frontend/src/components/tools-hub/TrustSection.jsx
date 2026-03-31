@@ -46,51 +46,47 @@ export default function TrustSection() {
   return (
     <section className="trust section" id="trust-section">
       <div className="container">
-        <div className="trust__layout" style={{ display: 'grid', gridTemplateColumns: 'minmax(350px, 1fr) 1fr', gap: '4rem', alignItems: 'center' }}>
-          
+        <div className="trust__layout">
           <div className="trust__content">
-            <div className="trust__header" style={{ marginBottom: '2rem', textAlign: 'left' }}>
+            <div className="trust__header trust__header--left">
               <h2 className="trust__title">
                 Global Infrastructure, <br />
                 <span className="gradient-text">Local Speed</span>
               </h2>
               <p className="trust__subtitle">
-                We take security seriously. Every file is processed securely via our global edge network and deleted automatically. Trusted worldwide.
+                Every file is processed securely via our global edge network and deleted automatically. Trusted worldwide.
               </p>
             </div>
 
-            <div className="trust__grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
-
-          {TRUST_ITEMS.map((item, i) => (
-            <motion.div
-              key={item.title}
-              className="trust__card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
-              <div className="trust__card-icon" style={{ background: `${item.color}12`, color: item.color }}>
-                <item.icon size={22} />
-              </div>
-              <h3 className="trust__card-title">{item.title}</h3>
-              <p className="trust__card-desc">{item.description}</p>
-            </motion.div>
-          ))}
+            <div className="trust__grid trust__grid--2col">
+              {TRUST_ITEMS.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  className="trust__card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.45, delay: i * 0.07 }}
+                >
+                  <div className="trust__card-icon" style={{ background: `${item.color}12`, color: item.color }}>
+                    <item.icon size={22} />
+                  </div>
+                  <h3 className="trust__card-title">{item.title}</h3>
+                  <p className="trust__card-desc">{item.description}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
-          
-          <div className="trust__globe-wrapper" style={{ minHeight: '500px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <motion.div 
-              style={{ width: '100%', height: '500px' }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              viewport={{ once: true }}
-            >
-              <Globe />
-            </motion.div>
-          </div>
+
+          <motion.div
+            className="trust__globe-wrapper"
+            initial={{ opacity: 0, scale: 0.85 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
+            viewport={{ once: true }}
+          >
+            <Globe />
+          </motion.div>
         </div>
       </div>
     </section>
