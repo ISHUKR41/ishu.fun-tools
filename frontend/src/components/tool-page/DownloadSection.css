@@ -1,0 +1,110 @@
+.download-section {
+  width: 100%;
+  max-width: 680px;
+  margin: var(--space-8) auto 0;
+  padding: var(--space-8);
+  background: var(--color-bg-glass);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+
+.download-section__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.download-section__check {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-emerald), #059669);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+}
+
+.download-section__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+}
+
+.download-section__file {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-5);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+}
+
+.download-section__name {
+  font-weight: 500;
+  font-size: var(--text-sm);
+}
+
+.download-section__size {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.download-section__actions {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.download-section__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px 20px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all var(--duration-base);
+}
+
+.download-section__btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-emerald), #059669);
+}
+
+.download-section__btn--primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.download-section__btn--secondary {
+  color: var(--color-text-secondary);
+  background: var(--color-bg-glass);
+  border: 1px solid var(--color-border-default);
+}
+
+.download-section__btn--secondary:hover {
+  background: var(--color-bg-glass-hover);
+  border-color: var(--color-border-strong);
+}
+
+.download-section__notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}

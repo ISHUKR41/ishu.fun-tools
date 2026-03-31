@@ -1,0 +1,190 @@
+.tool-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--gradient-card);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color var(--duration-slow) var(--ease-out-expo),
+              box-shadow var(--duration-slow) var(--ease-out-expo),
+              background var(--duration-slow);
+}
+
+.tool-card:hover {
+  border-color: color-mix(in srgb, var(--card-color, var(--color-indigo)) 30%, transparent);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+              0 0 0 1px color-mix(in srgb, var(--card-color, var(--color-indigo)) 15%, transparent);
+  background: var(--gradient-card-hover);
+}
+
+/* Glow */
+.tool-card__glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--card-color, var(--color-indigo)) 6%, transparent) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-slow);
+  pointer-events: none;
+}
+
+.tool-card:hover .tool-card__glow {
+  opacity: 1;
+}
+
+/* Header */
+.tool-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.tool-card__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  transition: transform var(--duration-base) var(--ease-spring);
+}
+
+.tool-card:hover .tool-card__icon-wrap {
+  transform: scale(1.08) rotate(3deg);
+}
+
+/* Badges */
+.tool-card__badges {
+  display: flex;
+  gap: var(--space-1);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.tool-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.tool-card__badge--new {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.tool-card__badge--popular {
+  background: rgba(249, 115, 22, 0.12);
+  color: #FB923C;
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.tool-card__badge--ai {
+  background: rgba(99, 102, 241, 0.12);
+  color: #818CF8;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* Content */
+.tool-card__name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.tool-card__description {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* Footer */
+.tool-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-1);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.tool-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.tool-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-amber);
+}
+
+.tool-card__uses {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+}
+
+.tool-card__cta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  transition: all var(--duration-base);
+}
+
+.tool-card:hover .tool-card__cta {
+  color: var(--card-color, var(--color-indigo));
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .tool-card {
+    padding: var(--space-4);
+  }
+  .tool-card__icon-wrap {
+    width: 36px;
+    height: 36px;
+  }
+  .tool-card__name {
+    font-size: 14px;
+  }
+  .tool-card__description {
+    font-size: 12px;
+  }
+  .tool-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}

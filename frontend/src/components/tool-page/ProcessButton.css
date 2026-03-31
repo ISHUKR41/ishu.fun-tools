@@ -1,0 +1,60 @@
+.process-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  margin: var(--space-6) auto 0;
+  padding: 16px 32px;
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--btn-color, var(--color-indigo)), color-mix(in srgb, var(--btn-color, var(--color-indigo)) 70%, #8B5CF6));
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: filter var(--duration-base), opacity var(--duration-base);
+}
+
+.process-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.process-btn:not(:disabled):hover {
+  filter: brightness(1.12);
+}
+
+.process-btn__shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity var(--duration-base);
+}
+
+.process-btn:not(:disabled):hover .process-btn__shimmer {
+  opacity: 1;
+  animation: shimmer 1.5s ease infinite;
+}
+
+.process-btn__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  z-index: 1;
+}
+
+.process-btn__spin {
+  animation: rotate 1s linear infinite;
+}
+
+.process-btn--done {
+  background: linear-gradient(135deg, var(--color-emerald), #059669);
+}
+
+.process-btn--processing {
+  cursor: wait;
+}

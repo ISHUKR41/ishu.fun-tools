@@ -1,0 +1,177 @@
+const MergePdf = lazy(() => import('./pages/tools/organize/merge-pdf/MergePdf'));
+const SplitPdf = lazy(() => import('./pages/tools/organize/split-pdf/SplitPdf'));
+const CompressPdf = lazy(() => import('./pages/tools/organize/compress-pdf/CompressPdf'));
+const RotatePdf = lazy(() => import('./pages/tools/organize/rotate-pdf/RotatePdf'));
+const OrganizePdf = lazy(() => import('./pages/tools/organize/organize-pdf/OrganizePdf'));
+const CropPdf = lazy(() => import('./pages/tools/organize/crop-pdf/CropPdf'));
+const RepairPdf = lazy(() => import('./pages/tools/organize/repair-pdf/RepairPdf'));
+const DeletePages = lazy(() => import('./pages/tools/organize/delete-pages/DeletePages'));
+const PdfToWord = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-word/PdfToWord'));
+const PdfToExcel = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-excel/PdfToExcel'));
+const PdfToPowerpoint = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-powerpoint/PdfToPowerpoint'));
+const PdfToJpg = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-jpg/PdfToJpg'));
+const PdfToPng = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-png/PdfToPng'));
+const PdfToSvg = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-svg/PdfToSvg'));
+const PdfToEpub = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-epub/PdfToEpub'));
+const PdfToCsv = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-csv/PdfToCsv'));
+const PdfToTiff = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-tiff/PdfToTiff'));
+const PdfToTxt = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-txt/PdfToTxt'));
+const PdfToPdfa = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-pdfa/PdfToPdfa'));
+const PdfToRtf = lazy(() => import('./pages/tools/convert-from-pdf/pdf-to-rtf/PdfToRtf'));
+const WordToPdf = lazy(() => import('./pages/tools/convert-to-pdf/word-to-pdf/WordToPdf'));
+const ExcelToPdf = lazy(() => import('./pages/tools/convert-to-pdf/excel-to-pdf/ExcelToPdf'));
+const PowerpointToPdf = lazy(() => import('./pages/tools/convert-to-pdf/powerpoint-to-pdf/PowerpointToPdf'));
+const JpgToPdf = lazy(() => import('./pages/tools/convert-to-pdf/jpg-to-pdf/JpgToPdf'));
+const PngToPdf = lazy(() => import('./pages/tools/convert-to-pdf/png-to-pdf/PngToPdf'));
+const HtmlToPdf = lazy(() => import('./pages/tools/convert-to-pdf/html-to-pdf/HtmlToPdf'));
+const UrlToPdf = lazy(() => import('./pages/tools/convert-to-pdf/url-to-pdf/UrlToPdf'));
+const EpubToPdf = lazy(() => import('./pages/tools/convert-to-pdf/epub-to-pdf/EpubToPdf'));
+const HeicToPdf = lazy(() => import('./pages/tools/convert-to-pdf/heic-to-pdf/HeicToPdf'));
+const TiffToPdf = lazy(() => import('./pages/tools/convert-to-pdf/tiff-to-pdf/TiffToPdf'));
+const WebpToPdf = lazy(() => import('./pages/tools/convert-to-pdf/webp-to-pdf/WebpToPdf'));
+const SvgToPdf = lazy(() => import('./pages/tools/convert-to-pdf/svg-to-pdf/SvgToPdf'));
+const CsvToPdf = lazy(() => import('./pages/tools/convert-to-pdf/csv-to-pdf/CsvToPdf'));
+const RtfToPdf = lazy(() => import('./pages/tools/convert-to-pdf/rtf-to-pdf/RtfToPdf'));
+const TxtToPdf = lazy(() => import('./pages/tools/convert-to-pdf/txt-to-pdf/TxtToPdf'));
+const MdToPdf = lazy(() => import('./pages/tools/convert-to-pdf/md-to-pdf/MdToPdf'));
+const OdtToPdf = lazy(() => import('./pages/tools/convert-to-pdf/odt-to-pdf/OdtToPdf'));
+const GifToPdf = lazy(() => import('./pages/tools/convert-to-pdf/gif-to-pdf/GifToPdf'));
+const BmpToPdf = lazy(() => import('./pages/tools/convert-to-pdf/bmp-to-pdf/BmpToPdf'));
+const XmlToPdf = lazy(() => import('./pages/tools/convert-to-pdf/xml-to-pdf/XmlToPdf'));
+const ZipToPdf = lazy(() => import('./pages/tools/convert-to-pdf/zip-to-pdf/ZipToPdf'));
+const MobiToPdf = lazy(() => import('./pages/tools/convert-to-pdf/mobi-to-pdf/MobiToPdf'));
+const EbookToPdf = lazy(() => import('./pages/tools/convert-to-pdf/ebook-to-pdf/EbookToPdf'));
+const CbzToPdf = lazy(() => import('./pages/tools/convert-to-pdf/cbz-to-pdf/CbzToPdf'));
+const CbrToPdf = lazy(() => import('./pages/tools/convert-to-pdf/cbr-to-pdf/CbrToPdf'));
+const DwgToPdf = lazy(() => import('./pages/tools/convert-to-pdf/dwg-to-pdf/DwgToPdf'));
+const AiToPdf = lazy(() => import('./pages/tools/convert-to-pdf/ai-to-pdf/AiToPdf'));
+const XpsToPdf = lazy(() => import('./pages/tools/convert-to-pdf/xps-to-pdf/XpsToPdf'));
+const PubToPdf = lazy(() => import('./pages/tools/convert-to-pdf/pub-to-pdf/PubToPdf'));
+const EmlToPdf = lazy(() => import('./pages/tools/convert-to-pdf/eml-to-pdf/EmlToPdf'));
+const WpsToPdf = lazy(() => import('./pages/tools/convert-to-pdf/wps-to-pdf/WpsToPdf'));
+const DjvuToPdf = lazy(() => import('./pages/tools/convert-to-pdf/djvu-to-pdf/DjvuToPdf'));
+const HwpToPdf = lazy(() => import('./pages/tools/convert-to-pdf/hwp-to-pdf/HwpToPdf'));
+const Fb2ToPdf = lazy(() => import('./pages/tools/convert-to-pdf/fb2-to-pdf/Fb2ToPdf'));
+const ChmToPdf = lazy(() => import('./pages/tools/convert-to-pdf/chm-to-pdf/ChmToPdf'));
+const JfifToPdf = lazy(() => import('./pages/tools/convert-to-pdf/jfif-to-pdf/JfifToPdf'));
+const HeifToPdf = lazy(() => import('./pages/tools/convert-to-pdf/heif-to-pdf/HeifToPdf'));
+const ImageToPdf = lazy(() => import('./pages/tools/convert-to-pdf/image-to-pdf/ImageToPdf'));
+const ProtectPdf = lazy(() => import('./pages/tools/pdf-security/protect-pdf/ProtectPdf'));
+const UnlockPdf = lazy(() => import('./pages/tools/pdf-security/unlock-pdf/UnlockPdf'));
+const SignPdf = lazy(() => import('./pages/tools/pdf-security/sign-pdf/SignPdf'));
+const EditPdf = lazy(() => import('./pages/tools/edit-pdf/edit-pdf/EditPdf'));
+const WatermarkPdf = lazy(() => import('./pages/tools/edit-pdf/watermark-pdf/WatermarkPdf'));
+const AnnotatePdf = lazy(() => import('./pages/tools/edit-pdf/annotate-pdf/AnnotatePdf'));
+const PageNumbersPdf = lazy(() => import('./pages/tools/edit-pdf/page-numbers-pdf/PageNumbersPdf'));
+const HeaderFooterPdf = lazy(() => import('./pages/tools/edit-pdf/header-footer-pdf/HeaderFooterPdf'));
+const RedactPdf = lazy(() => import('./pages/tools/edit-pdf/redact-pdf/RedactPdf'));
+const GrayscalePdf = lazy(() => import('./pages/tools/edit-pdf/grayscale-pdf/GrayscalePdf'));
+const WhiteoutPdf = lazy(() => import('./pages/tools/edit-pdf/whiteout-pdf/WhiteoutPdf'));
+const PdfFiller = lazy(() => import('./pages/tools/edit-pdf/pdf-filler/PdfFiller'));
+const HighlightPdf = lazy(() => import('./pages/tools/edit-pdf/highlight-pdf/HighlightPdf'));
+const FlattenPdf = lazy(() => import('./pages/tools/edit-pdf/flatten-pdf/FlattenPdf'));
+const AddTextPdf = lazy(() => import('./pages/tools/edit-pdf/add-text-pdf/AddTextPdf'));
+const ExtractPages = lazy(() => import('./pages/tools/extract/extract-pages/ExtractPages'));
+const ExtractText = lazy(() => import('./pages/tools/extract/extract-text/ExtractText'));
+const ExtractImages = lazy(() => import('./pages/tools/extract/extract-images/ExtractImages'));
+const EditMetadata = lazy(() => import('./pages/tools/extract/edit-metadata/EditMetadata'));
+const RemoveMetadata = lazy(() => import('./pages/tools/extract/remove-metadata/RemoveMetadata'));
+const CreatePdf = lazy(() => import('./pages/tools/extract/create-pdf/CreatePdf'));
+const ResizePages = lazy(() => import('./pages/tools/extract/resize-pages/ResizePages'));
+const OcrPdf = lazy(() => import('./pages/tools/ai-powered/ocr-pdf/OcrPdf'));
+const TranslatePdf = lazy(() => import('./pages/tools/ai-powered/translate-pdf/TranslatePdf'));
+const SummarizePdf = lazy(() => import('./pages/tools/ai-powered/summarize-pdf/SummarizePdf'));
+const ChatWithPdf = lazy(() => import('./pages/tools/ai-powered/chat-with-pdf/ChatWithPdf'));
+const ComparePdf = lazy(() => import('./pages/tools/advanced/compare-pdf/ComparePdf'));
+const ScanToPdf = lazy(() => import('./pages/tools/advanced/scan-to-pdf/ScanToPdf'));
+const PdfViewer = lazy(() => import('./pages/tools/advanced/pdf-viewer/PdfViewer'));
+const AddImageToPdf = lazy(() => import('./pages/tools/advanced/add-image-to-pdf/AddImageToPdf'));
+
+        <Route path="/tools/merge-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><MergePdf /></motion.div>} />
+        <Route path="/tools/split-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><SplitPdf /></motion.div>} />
+        <Route path="/tools/compress-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CompressPdf /></motion.div>} />
+        <Route path="/tools/rotate-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RotatePdf /></motion.div>} />
+        <Route path="/tools/organize-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><OrganizePdf /></motion.div>} />
+        <Route path="/tools/crop-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CropPdf /></motion.div>} />
+        <Route path="/tools/repair-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RepairPdf /></motion.div>} />
+        <Route path="/tools/delete-pages" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><DeletePages /></motion.div>} />
+        <Route path="/tools/pdf-to-word" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToWord /></motion.div>} />
+        <Route path="/tools/pdf-to-excel" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToExcel /></motion.div>} />
+        <Route path="/tools/pdf-to-powerpoint" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToPowerpoint /></motion.div>} />
+        <Route path="/tools/pdf-to-jpg" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToJpg /></motion.div>} />
+        <Route path="/tools/pdf-to-png" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToPng /></motion.div>} />
+        <Route path="/tools/pdf-to-svg" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToSvg /></motion.div>} />
+        <Route path="/tools/pdf-to-epub" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToEpub /></motion.div>} />
+        <Route path="/tools/pdf-to-csv" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToCsv /></motion.div>} />
+        <Route path="/tools/pdf-to-tiff" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToTiff /></motion.div>} />
+        <Route path="/tools/pdf-to-txt" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToTxt /></motion.div>} />
+        <Route path="/tools/pdf-to-pdfa" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToPdfa /></motion.div>} />
+        <Route path="/tools/pdf-to-rtf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToRtf /></motion.div>} />
+        <Route path="/tools/word-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WordToPdf /></motion.div>} />
+        <Route path="/tools/excel-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ExcelToPdf /></motion.div>} />
+        <Route path="/tools/powerpoint-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PowerpointToPdf /></motion.div>} />
+        <Route path="/tools/jpg-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><JpgToPdf /></motion.div>} />
+        <Route path="/tools/png-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PngToPdf /></motion.div>} />
+        <Route path="/tools/html-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HtmlToPdf /></motion.div>} />
+        <Route path="/tools/url-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><UrlToPdf /></motion.div>} />
+        <Route path="/tools/epub-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EpubToPdf /></motion.div>} />
+        <Route path="/tools/heic-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HeicToPdf /></motion.div>} />
+        <Route path="/tools/tiff-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><TiffToPdf /></motion.div>} />
+        <Route path="/tools/webp-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WebpToPdf /></motion.div>} />
+        <Route path="/tools/svg-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><SvgToPdf /></motion.div>} />
+        <Route path="/tools/csv-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CsvToPdf /></motion.div>} />
+        <Route path="/tools/rtf-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RtfToPdf /></motion.div>} />
+        <Route path="/tools/txt-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><TxtToPdf /></motion.div>} />
+        <Route path="/tools/md-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><MdToPdf /></motion.div>} />
+        <Route path="/tools/odt-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><OdtToPdf /></motion.div>} />
+        <Route path="/tools/gif-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><GifToPdf /></motion.div>} />
+        <Route path="/tools/bmp-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><BmpToPdf /></motion.div>} />
+        <Route path="/tools/xml-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><XmlToPdf /></motion.div>} />
+        <Route path="/tools/zip-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ZipToPdf /></motion.div>} />
+        <Route path="/tools/mobi-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><MobiToPdf /></motion.div>} />
+        <Route path="/tools/ebook-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EbookToPdf /></motion.div>} />
+        <Route path="/tools/cbz-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CbzToPdf /></motion.div>} />
+        <Route path="/tools/cbr-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CbrToPdf /></motion.div>} />
+        <Route path="/tools/dwg-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><DwgToPdf /></motion.div>} />
+        <Route path="/tools/ai-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><AiToPdf /></motion.div>} />
+        <Route path="/tools/xps-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><XpsToPdf /></motion.div>} />
+        <Route path="/tools/pub-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PubToPdf /></motion.div>} />
+        <Route path="/tools/eml-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EmlToPdf /></motion.div>} />
+        <Route path="/tools/wps-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WpsToPdf /></motion.div>} />
+        <Route path="/tools/djvu-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><DjvuToPdf /></motion.div>} />
+        <Route path="/tools/hwp-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HwpToPdf /></motion.div>} />
+        <Route path="/tools/fb2-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><Fb2ToPdf /></motion.div>} />
+        <Route path="/tools/chm-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ChmToPdf /></motion.div>} />
+        <Route path="/tools/jfif-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><JfifToPdf /></motion.div>} />
+        <Route path="/tools/heif-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HeifToPdf /></motion.div>} />
+        <Route path="/tools/image-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ImageToPdf /></motion.div>} />
+        <Route path="/tools/protect-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ProtectPdf /></motion.div>} />
+        <Route path="/tools/unlock-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><UnlockPdf /></motion.div>} />
+        <Route path="/tools/sign-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><SignPdf /></motion.div>} />
+        <Route path="/tools/edit-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EditPdf /></motion.div>} />
+        <Route path="/tools/watermark-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WatermarkPdf /></motion.div>} />
+        <Route path="/tools/annotate-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><AnnotatePdf /></motion.div>} />
+        <Route path="/tools/page-numbers-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PageNumbersPdf /></motion.div>} />
+        <Route path="/tools/header-footer-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HeaderFooterPdf /></motion.div>} />
+        <Route path="/tools/redact-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RedactPdf /></motion.div>} />
+        <Route path="/tools/grayscale-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><GrayscalePdf /></motion.div>} />
+        <Route path="/tools/whiteout-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WhiteoutPdf /></motion.div>} />
+        <Route path="/tools/pdf-filler" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfFiller /></motion.div>} />
+        <Route path="/tools/highlight-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HighlightPdf /></motion.div>} />
+        <Route path="/tools/flatten-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><FlattenPdf /></motion.div>} />
+        <Route path="/tools/add-text-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><AddTextPdf /></motion.div>} />
+        <Route path="/tools/extract-pages" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ExtractPages /></motion.div>} />
+        <Route path="/tools/extract-text" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ExtractText /></motion.div>} />
+        <Route path="/tools/extract-images" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ExtractImages /></motion.div>} />
+        <Route path="/tools/edit-metadata" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EditMetadata /></motion.div>} />
+        <Route path="/tools/remove-metadata" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RemoveMetadata /></motion.div>} />
+        <Route path="/tools/create-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CreatePdf /></motion.div>} />
+        <Route path="/tools/resize-pages" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ResizePages /></motion.div>} />
+        <Route path="/tools/ocr-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><OcrPdf /></motion.div>} />
+        <Route path="/tools/translate-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><TranslatePdf /></motion.div>} />
+        <Route path="/tools/summarize-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><SummarizePdf /></motion.div>} />
+        <Route path="/tools/chat-with-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ChatWithPdf /></motion.div>} />
+        <Route path="/tools/compare-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ComparePdf /></motion.div>} />
+        <Route path="/tools/scan-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ScanToPdf /></motion.div>} />
+        <Route path="/tools/pdf-viewer" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfViewer /></motion.div>} />
+        <Route path="/tools/add-image-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><AddImageToPdf /></motion.div>} />

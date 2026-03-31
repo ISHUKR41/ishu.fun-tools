@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════════════
+   ISHU.FUN TOOLS — DESIGN TOKENS
+   Dark Luxury Aesthetic · Glassmorphism · Gradient Accents
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── BACKGROUNDS ──────────────────── */
+  --color-bg-base:         #060611;
+  --color-bg-surface:      #0B0B1A;
+  --color-bg-elevated:     #10101F;
+  --color-bg-overlay:      #1A1A2E;
+  --color-bg-glass:        rgba(255, 255, 255, 0.03);
+  --color-bg-glass-hover:  rgba(255, 255, 255, 0.065);
+  --color-bg-glass-active: rgba(255, 255, 255, 0.10);
+
+  /* ─── TEXT ─────────────────────────── */
+  --color-text-primary:    #F0F0FF;
+  --color-text-secondary:  #9B9BB4;
+  --color-text-muted:      #5C5C7A;
+  --color-text-inverse:    #060611;
+
+  /* ─── BORDERS ──────────────────────── */
+  --color-border-default:  rgba(255, 255, 255, 0.07);
+  --color-border-subtle:   rgba(255, 255, 255, 0.04);
+  --color-border-strong:   rgba(255, 255, 255, 0.14);
+  --color-border-focus:    rgba(99, 102, 241, 0.6);
+
+  /* ─── BRAND ACCENTS ────────────────── */
+  --color-indigo:          #6366F1;
+  --color-indigo-light:    #818CF8;
+  --color-indigo-dark:     #4338CA;
+  --color-violet:          #8B5CF6;
+  --color-blue:            #3B82F6;
+  --color-cyan:            #06B6D4;
+  --color-emerald:         #10B981;
+  --color-amber:           #F59E0B;
+  --color-rose:            #F43F5E;
+  --color-orange:          #F97316;
+  --color-pink:            #EC4899;
+  --color-red:             #EF4444;
+  --color-teal:            #14B8A6;
+
+  /* ─── GRADIENTS ────────────────────── */
+  --gradient-brand:        linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
+  --gradient-blue-violet:  linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
+  --gradient-hero:         radial-gradient(ellipse at 60% 0%, rgba(99,102,241,0.15) 0%, transparent 70%),
+                           radial-gradient(ellipse at 10% 90%, rgba(139,92,246,0.10) 0%, transparent 60%);
+  --gradient-mesh:         conic-gradient(from 180deg at 50% 50%,
+                             #6366F120 0deg, #8B5CF620 72deg,
+                             #EC489920 144deg, #3B82F620 216deg,
+                             #06B6D420 288deg, #6366F120 360deg);
+  --gradient-card:         linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  --gradient-card-hover:   linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+
+  /* ─── SHADOWS ──────────────────────── */
+  --shadow-sm:             0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:             0 4px 16px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.3);
+  --shadow-lg:             0 8px 32px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.4);
+  --shadow-xl:             0 20px 60px rgba(0,0,0,0.7), 0 8px 16px rgba(0,0,0,0.4);
+  --shadow-glow-indigo:    0 0 20px rgba(99,102,241,0.3), 0 0 60px rgba(99,102,241,0.1);
+  --shadow-glow-violet:    0 0 20px rgba(139,92,246,0.3), 0 0 60px rgba(139,92,246,0.1);
+  --shadow-card-hover:     0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
+
+  /* ─── BLUR ─────────────────────────── */
+  --blur-sm:  blur(8px);
+  --blur-md:  blur(16px);
+  --blur-lg:  blur(24px);
+  --blur-xl:  blur(40px);
+
+  /* ─── SPACING ──────────────────────── */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-5: 20px;  --space-6: 24px;  --space-8: 32px;  --space-10: 40px;
+  --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+
+  /* ─── BORDER RADIUS ────────────────── */
+  --radius-xs: 4px;  --radius-sm: 6px;  --radius-md: 10px;
+  --radius-lg: 14px; --radius-xl: 20px; --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* ─── TYPOGRAPHY ────────────────────── */
+  --font-display:  'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body:     'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:     'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs:   clamp(10px, 1vw + 8px, 12px);
+  --text-sm:   clamp(12px, 1vw + 10px, 14px);
+  --text-base: clamp(14px, 1vw + 12px, 16px);
+  --text-lg:   clamp(16px, 1.5vw + 12px, 18px);
+  --text-xl:   clamp(18px, 2vw + 12px, 22px);
+  --text-2xl:  clamp(22px, 3vw + 12px, 28px);
+  --text-3xl:  clamp(28px, 4vw + 14px, 40px);
+  --text-4xl:  clamp(36px, 5vw + 16px, 56px);
+  --text-5xl:  clamp(48px, 7vw + 16px, 80px);
+
+  /* ─── TRANSITIONS ──────────────────── */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:    cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:  120ms;
+  --duration-base:  200ms;
+  --duration-slow:  350ms;
+  --duration-slower: 500ms;
+
+  /* ─── Z-INDEX ───────────────────────── */
+  --z-below: -1;    --z-base: 0;     --z-raised: 10;
+  --z-dropdown: 100; --z-sticky: 200; --z-modal: 300;
+  --z-toast: 400;   --z-tooltip: 500; --z-cursor: 9999;
+
+  /* ─── LAYOUT ────────────────────────── */
+  --max-width: 1280px;
+  --max-width-lg: 1440px;
+  --nav-height: 64px;
+}
