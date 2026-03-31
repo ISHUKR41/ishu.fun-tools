@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   ISHU.FUN TOOLS — GLOBAL STYLES
+   ISHU.FUN TOOLS — GLOBAL STYLES (Performance Optimized)
    ═══════════════════════════════════════════════════════ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import './variables.css';
@@ -17,6 +17,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* NO scroll-behavior: smooth — Lenis handles it */
 }
 
 body {
@@ -27,24 +28,14 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
-  cursor: auto !important; /* Force cursor visibility from rogue hides */
+  cursor: auto !important;
 }
 
-/* ─── NOISE TEXTURE OVERLAY ─── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.025;
-  pointer-events: none;
-  z-index: 9998;
-  mix-blend-mode: overlay;
-}
+/* REMOVED: body::before SVG noise filter — it's a per-frame GPU killer */
 
 /* ─── SCROLLBAR ─── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -52,17 +43,17 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(99, 102, 241, 0.25);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(99, 102, 241, 0.45);
 }
 
 /* ─── SELECTION ─── */
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
+  background: rgba(99, 102, 241, 0.35);
   color: #fff;
 }
 
@@ -118,18 +109,23 @@ input, textarea, select {
   border: 0;
 }
 
-/* ─── GLASS CARD ─── */
+/* ─── GLASS CARD — use sparingly (backdrop-filter is expensive) ─── */
 .glass {
   background: var(--color-bg-glass);
-  backdrop-filter: var(--blur-md);
-  -webkit-backdrop-filter: var(--blur-md);
+  border: 1px solid var(--color-border-default);
+}
+
+.glass-blur {
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border-default);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: var(--blur-lg);
-  -webkit-backdrop-filter: var(--blur-lg);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--color-border-strong);
 }
 
@@ -143,11 +139,11 @@ input, textarea, select {
 
 .gradient-text-flow {
   background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 25%, #EC4899 50%, #8B5CF6 75%, #6366F1 100%);
-  background-size: 200% 200%;
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-flow 4s ease infinite;
+  animation: gradient-flow 5s ease infinite;
 }
 
 /* ─── SECTION SPACING ─── */
@@ -163,7 +159,7 @@ input, textarea, select {
 
 /* ─── DOT GRID BACKGROUND ─── */
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -177,4 +173,60 @@ input, textarea, select {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* ─── LENIS SMOOTH SCROLL ─── */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* ─── GPU ACCELERATION HELPERS ─── */
+.gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ─── PAGE TRANSITION ─── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.page-exit {
+  opacity: 1;
+}
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* ─── RESPONSIVE PADDING ─── */
+@media (max-width: 768px) {
+  .container, .container-lg {
+    padding: 0 var(--space-4);
+  }
+  .section {
+    padding: var(--space-16) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container, .container-lg {
+    padding: 0 var(--space-3);
+  }
+  .section {
+    padding: var(--space-12) 0;
+  }
 }
