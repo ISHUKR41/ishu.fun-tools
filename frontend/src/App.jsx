@@ -112,9 +112,9 @@ function PageLoader() {
 
 // Route transition animation variants
 const pageVariants = {
-  initial: { opacity: 0, y: 15, filter: "blur(6px)", scale: 0.98 },
-  in: { opacity: 1, y: 0, filter: "blur(0px)", scale: 1, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-  out: { opacity: 0, y: -15, filter: "blur(6px)", scale: 0.98, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+  initial: { opacity: 0, y: 15 },
+  in: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+  out: { opacity: 0, transition: { duration: 0.2, ease: "easeInOut" } },
 };
 
 function PageWrapper({ children }) {

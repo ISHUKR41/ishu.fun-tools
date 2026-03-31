@@ -16,20 +16,17 @@ export default function useLenis() {
       touchMultiplier: 2,
     });
 
-    // Synchronize global GSAP ScrollTrigger with Lenis scroll
     lenis.on('scroll', ScrollTrigger.update);
 
-    // Sync Lenis's raf with GSAP's ticker
-    const raf = (time) => {
-      lenis.raf(time * 1000);
-    };
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
     
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
+    requestAnimationFrame(raf);
 
     return () => {
       lenis.destroy();
-      gsap.ticker.remove(raf);
     };
   }, []);
 }

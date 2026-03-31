@@ -87,91 +87,91 @@ const ScanToPdf = lazy(() => import('./pages/tools/advanced/scan-to-pdf/ScanToPd
 const PdfViewer = lazy(() => import('./pages/tools/advanced/pdf-viewer/PdfViewer'));
 const AddImageToPdf = lazy(() => import('./pages/tools/advanced/add-image-to-pdf/AddImageToPdf'));
 
-        <Route path="/tools/merge-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><MergePdf /></motion.div>} />
-        <Route path="/tools/split-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><SplitPdf /></motion.div>} />
-        <Route path="/tools/compress-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CompressPdf /></motion.div>} />
-        <Route path="/tools/rotate-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RotatePdf /></motion.div>} />
-        <Route path="/tools/organize-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><OrganizePdf /></motion.div>} />
-        <Route path="/tools/crop-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CropPdf /></motion.div>} />
-        <Route path="/tools/repair-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RepairPdf /></motion.div>} />
-        <Route path="/tools/delete-pages" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><DeletePages /></motion.div>} />
-        <Route path="/tools/pdf-to-word" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToWord /></motion.div>} />
-        <Route path="/tools/pdf-to-excel" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToExcel /></motion.div>} />
-        <Route path="/tools/pdf-to-powerpoint" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToPowerpoint /></motion.div>} />
-        <Route path="/tools/pdf-to-jpg" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToJpg /></motion.div>} />
-        <Route path="/tools/pdf-to-png" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToPng /></motion.div>} />
-        <Route path="/tools/pdf-to-svg" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToSvg /></motion.div>} />
-        <Route path="/tools/pdf-to-epub" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToEpub /></motion.div>} />
-        <Route path="/tools/pdf-to-csv" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToCsv /></motion.div>} />
-        <Route path="/tools/pdf-to-tiff" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToTiff /></motion.div>} />
-        <Route path="/tools/pdf-to-txt" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToTxt /></motion.div>} />
-        <Route path="/tools/pdf-to-pdfa" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToPdfa /></motion.div>} />
-        <Route path="/tools/pdf-to-rtf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfToRtf /></motion.div>} />
-        <Route path="/tools/word-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WordToPdf /></motion.div>} />
-        <Route path="/tools/excel-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ExcelToPdf /></motion.div>} />
-        <Route path="/tools/powerpoint-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PowerpointToPdf /></motion.div>} />
-        <Route path="/tools/jpg-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><JpgToPdf /></motion.div>} />
-        <Route path="/tools/png-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PngToPdf /></motion.div>} />
-        <Route path="/tools/html-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HtmlToPdf /></motion.div>} />
-        <Route path="/tools/url-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><UrlToPdf /></motion.div>} />
-        <Route path="/tools/epub-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EpubToPdf /></motion.div>} />
-        <Route path="/tools/heic-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HeicToPdf /></motion.div>} />
-        <Route path="/tools/tiff-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><TiffToPdf /></motion.div>} />
-        <Route path="/tools/webp-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WebpToPdf /></motion.div>} />
-        <Route path="/tools/svg-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><SvgToPdf /></motion.div>} />
-        <Route path="/tools/csv-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CsvToPdf /></motion.div>} />
-        <Route path="/tools/rtf-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RtfToPdf /></motion.div>} />
-        <Route path="/tools/txt-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><TxtToPdf /></motion.div>} />
-        <Route path="/tools/md-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><MdToPdf /></motion.div>} />
-        <Route path="/tools/odt-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><OdtToPdf /></motion.div>} />
-        <Route path="/tools/gif-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><GifToPdf /></motion.div>} />
-        <Route path="/tools/bmp-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><BmpToPdf /></motion.div>} />
-        <Route path="/tools/xml-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><XmlToPdf /></motion.div>} />
-        <Route path="/tools/zip-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ZipToPdf /></motion.div>} />
-        <Route path="/tools/mobi-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><MobiToPdf /></motion.div>} />
-        <Route path="/tools/ebook-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EbookToPdf /></motion.div>} />
-        <Route path="/tools/cbz-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CbzToPdf /></motion.div>} />
-        <Route path="/tools/cbr-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CbrToPdf /></motion.div>} />
-        <Route path="/tools/dwg-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><DwgToPdf /></motion.div>} />
-        <Route path="/tools/ai-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><AiToPdf /></motion.div>} />
-        <Route path="/tools/xps-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><XpsToPdf /></motion.div>} />
-        <Route path="/tools/pub-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PubToPdf /></motion.div>} />
-        <Route path="/tools/eml-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EmlToPdf /></motion.div>} />
-        <Route path="/tools/wps-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WpsToPdf /></motion.div>} />
-        <Route path="/tools/djvu-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><DjvuToPdf /></motion.div>} />
-        <Route path="/tools/hwp-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HwpToPdf /></motion.div>} />
-        <Route path="/tools/fb2-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><Fb2ToPdf /></motion.div>} />
-        <Route path="/tools/chm-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ChmToPdf /></motion.div>} />
-        <Route path="/tools/jfif-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><JfifToPdf /></motion.div>} />
-        <Route path="/tools/heif-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HeifToPdf /></motion.div>} />
-        <Route path="/tools/image-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ImageToPdf /></motion.div>} />
-        <Route path="/tools/protect-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ProtectPdf /></motion.div>} />
-        <Route path="/tools/unlock-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><UnlockPdf /></motion.div>} />
-        <Route path="/tools/sign-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><SignPdf /></motion.div>} />
-        <Route path="/tools/edit-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EditPdf /></motion.div>} />
-        <Route path="/tools/watermark-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WatermarkPdf /></motion.div>} />
-        <Route path="/tools/annotate-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><AnnotatePdf /></motion.div>} />
-        <Route path="/tools/page-numbers-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PageNumbersPdf /></motion.div>} />
-        <Route path="/tools/header-footer-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HeaderFooterPdf /></motion.div>} />
-        <Route path="/tools/redact-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RedactPdf /></motion.div>} />
-        <Route path="/tools/grayscale-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><GrayscalePdf /></motion.div>} />
-        <Route path="/tools/whiteout-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><WhiteoutPdf /></motion.div>} />
-        <Route path="/tools/pdf-filler" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfFiller /></motion.div>} />
-        <Route path="/tools/highlight-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><HighlightPdf /></motion.div>} />
-        <Route path="/tools/flatten-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><FlattenPdf /></motion.div>} />
-        <Route path="/tools/add-text-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><AddTextPdf /></motion.div>} />
-        <Route path="/tools/extract-pages" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ExtractPages /></motion.div>} />
-        <Route path="/tools/extract-text" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ExtractText /></motion.div>} />
-        <Route path="/tools/extract-images" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ExtractImages /></motion.div>} />
-        <Route path="/tools/edit-metadata" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><EditMetadata /></motion.div>} />
-        <Route path="/tools/remove-metadata" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><RemoveMetadata /></motion.div>} />
-        <Route path="/tools/create-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><CreatePdf /></motion.div>} />
-        <Route path="/tools/resize-pages" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ResizePages /></motion.div>} />
-        <Route path="/tools/ocr-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><OcrPdf /></motion.div>} />
-        <Route path="/tools/translate-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><TranslatePdf /></motion.div>} />
-        <Route path="/tools/summarize-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><SummarizePdf /></motion.div>} />
-        <Route path="/tools/chat-with-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ChatWithPdf /></motion.div>} />
-        <Route path="/tools/compare-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ComparePdf /></motion.div>} />
-        <Route path="/tools/scan-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><ScanToPdf /></motion.div>} />
-        <Route path="/tools/pdf-viewer" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><PdfViewer /></motion.div>} />
-        <Route path="/tools/add-image-to-pdf" element={<motion.div initial="initial" animate="in" exit="out" variants={pageVariants}><AddImageToPdf /></motion.div>} />
+        <Route path="/tools/merge-pdf" element={<PageWrapper><MergePdf /></PageWrapper>} />
+        <Route path="/tools/split-pdf" element={<PageWrapper><SplitPdf /></PageWrapper>} />
+        <Route path="/tools/compress-pdf" element={<PageWrapper><CompressPdf /></PageWrapper>} />
+        <Route path="/tools/rotate-pdf" element={<PageWrapper><RotatePdf /></PageWrapper>} />
+        <Route path="/tools/organize-pdf" element={<PageWrapper><OrganizePdf /></PageWrapper>} />
+        <Route path="/tools/crop-pdf" element={<PageWrapper><CropPdf /></PageWrapper>} />
+        <Route path="/tools/repair-pdf" element={<PageWrapper><RepairPdf /></PageWrapper>} />
+        <Route path="/tools/delete-pages" element={<PageWrapper><DeletePages /></PageWrapper>} />
+        <Route path="/tools/pdf-to-word" element={<PageWrapper><PdfToWord /></PageWrapper>} />
+        <Route path="/tools/pdf-to-excel" element={<PageWrapper><PdfToExcel /></PageWrapper>} />
+        <Route path="/tools/pdf-to-powerpoint" element={<PageWrapper><PdfToPowerpoint /></PageWrapper>} />
+        <Route path="/tools/pdf-to-jpg" element={<PageWrapper><PdfToJpg /></PageWrapper>} />
+        <Route path="/tools/pdf-to-png" element={<PageWrapper><PdfToPng /></PageWrapper>} />
+        <Route path="/tools/pdf-to-svg" element={<PageWrapper><PdfToSvg /></PageWrapper>} />
+        <Route path="/tools/pdf-to-epub" element={<PageWrapper><PdfToEpub /></PageWrapper>} />
+        <Route path="/tools/pdf-to-csv" element={<PageWrapper><PdfToCsv /></PageWrapper>} />
+        <Route path="/tools/pdf-to-tiff" element={<PageWrapper><PdfToTiff /></PageWrapper>} />
+        <Route path="/tools/pdf-to-txt" element={<PageWrapper><PdfToTxt /></PageWrapper>} />
+        <Route path="/tools/pdf-to-pdfa" element={<PageWrapper><PdfToPdfa /></PageWrapper>} />
+        <Route path="/tools/pdf-to-rtf" element={<PageWrapper><PdfToRtf /></PageWrapper>} />
+        <Route path="/tools/word-to-pdf" element={<PageWrapper><WordToPdf /></PageWrapper>} />
+        <Route path="/tools/excel-to-pdf" element={<PageWrapper><ExcelToPdf /></PageWrapper>} />
+        <Route path="/tools/powerpoint-to-pdf" element={<PageWrapper><PowerpointToPdf /></PageWrapper>} />
+        <Route path="/tools/jpg-to-pdf" element={<PageWrapper><JpgToPdf /></PageWrapper>} />
+        <Route path="/tools/png-to-pdf" element={<PageWrapper><PngToPdf /></PageWrapper>} />
+        <Route path="/tools/html-to-pdf" element={<PageWrapper><HtmlToPdf /></PageWrapper>} />
+        <Route path="/tools/url-to-pdf" element={<PageWrapper><UrlToPdf /></PageWrapper>} />
+        <Route path="/tools/epub-to-pdf" element={<PageWrapper><EpubToPdf /></PageWrapper>} />
+        <Route path="/tools/heic-to-pdf" element={<PageWrapper><HeicToPdf /></PageWrapper>} />
+        <Route path="/tools/tiff-to-pdf" element={<PageWrapper><TiffToPdf /></PageWrapper>} />
+        <Route path="/tools/webp-to-pdf" element={<PageWrapper><WebpToPdf /></PageWrapper>} />
+        <Route path="/tools/svg-to-pdf" element={<PageWrapper><SvgToPdf /></PageWrapper>} />
+        <Route path="/tools/csv-to-pdf" element={<PageWrapper><CsvToPdf /></PageWrapper>} />
+        <Route path="/tools/rtf-to-pdf" element={<PageWrapper><RtfToPdf /></PageWrapper>} />
+        <Route path="/tools/txt-to-pdf" element={<PageWrapper><TxtToPdf /></PageWrapper>} />
+        <Route path="/tools/md-to-pdf" element={<PageWrapper><MdToPdf /></PageWrapper>} />
+        <Route path="/tools/odt-to-pdf" element={<PageWrapper><OdtToPdf /></PageWrapper>} />
+        <Route path="/tools/gif-to-pdf" element={<PageWrapper><GifToPdf /></PageWrapper>} />
+        <Route path="/tools/bmp-to-pdf" element={<PageWrapper><BmpToPdf /></PageWrapper>} />
+        <Route path="/tools/xml-to-pdf" element={<PageWrapper><XmlToPdf /></PageWrapper>} />
+        <Route path="/tools/zip-to-pdf" element={<PageWrapper><ZipToPdf /></PageWrapper>} />
+        <Route path="/tools/mobi-to-pdf" element={<PageWrapper><MobiToPdf /></PageWrapper>} />
+        <Route path="/tools/ebook-to-pdf" element={<PageWrapper><EbookToPdf /></PageWrapper>} />
+        <Route path="/tools/cbz-to-pdf" element={<PageWrapper><CbzToPdf /></PageWrapper>} />
+        <Route path="/tools/cbr-to-pdf" element={<PageWrapper><CbrToPdf /></PageWrapper>} />
+        <Route path="/tools/dwg-to-pdf" element={<PageWrapper><DwgToPdf /></PageWrapper>} />
+        <Route path="/tools/ai-to-pdf" element={<PageWrapper><AiToPdf /></PageWrapper>} />
+        <Route path="/tools/xps-to-pdf" element={<PageWrapper><XpsToPdf /></PageWrapper>} />
+        <Route path="/tools/pub-to-pdf" element={<PageWrapper><PubToPdf /></PageWrapper>} />
+        <Route path="/tools/eml-to-pdf" element={<PageWrapper><EmlToPdf /></PageWrapper>} />
+        <Route path="/tools/wps-to-pdf" element={<PageWrapper><WpsToPdf /></PageWrapper>} />
+        <Route path="/tools/djvu-to-pdf" element={<PageWrapper><DjvuToPdf /></PageWrapper>} />
+        <Route path="/tools/hwp-to-pdf" element={<PageWrapper><HwpToPdf /></PageWrapper>} />
+        <Route path="/tools/fb2-to-pdf" element={<PageWrapper><Fb2ToPdf /></PageWrapper>} />
+        <Route path="/tools/chm-to-pdf" element={<PageWrapper><ChmToPdf /></PageWrapper>} />
+        <Route path="/tools/jfif-to-pdf" element={<PageWrapper><JfifToPdf /></PageWrapper>} />
+        <Route path="/tools/heif-to-pdf" element={<PageWrapper><HeifToPdf /></PageWrapper>} />
+        <Route path="/tools/image-to-pdf" element={<PageWrapper><ImageToPdf /></PageWrapper>} />
+        <Route path="/tools/protect-pdf" element={<PageWrapper><ProtectPdf /></PageWrapper>} />
+        <Route path="/tools/unlock-pdf" element={<PageWrapper><UnlockPdf /></PageWrapper>} />
+        <Route path="/tools/sign-pdf" element={<PageWrapper><SignPdf /></PageWrapper>} />
+        <Route path="/tools/edit-pdf" element={<PageWrapper><EditPdf /></PageWrapper>} />
+        <Route path="/tools/watermark-pdf" element={<PageWrapper><WatermarkPdf /></PageWrapper>} />
+        <Route path="/tools/annotate-pdf" element={<PageWrapper><AnnotatePdf /></PageWrapper>} />
+        <Route path="/tools/page-numbers-pdf" element={<PageWrapper><PageNumbersPdf /></PageWrapper>} />
+        <Route path="/tools/header-footer-pdf" element={<PageWrapper><HeaderFooterPdf /></PageWrapper>} />
+        <Route path="/tools/redact-pdf" element={<PageWrapper><RedactPdf /></PageWrapper>} />
+        <Route path="/tools/grayscale-pdf" element={<PageWrapper><GrayscalePdf /></PageWrapper>} />
+        <Route path="/tools/whiteout-pdf" element={<PageWrapper><WhiteoutPdf /></PageWrapper>} />
+        <Route path="/tools/pdf-filler" element={<PageWrapper><PdfFiller /></PageWrapper>} />
+        <Route path="/tools/highlight-pdf" element={<PageWrapper><HighlightPdf /></PageWrapper>} />
+        <Route path="/tools/flatten-pdf" element={<PageWrapper><FlattenPdf /></PageWrapper>} />
+        <Route path="/tools/add-text-pdf" element={<PageWrapper><AddTextPdf /></PageWrapper>} />
+        <Route path="/tools/extract-pages" element={<PageWrapper><ExtractPages /></PageWrapper>} />
+        <Route path="/tools/extract-text" element={<PageWrapper><ExtractText /></PageWrapper>} />
+        <Route path="/tools/extract-images" element={<PageWrapper><ExtractImages /></PageWrapper>} />
+        <Route path="/tools/edit-metadata" element={<PageWrapper><EditMetadata /></PageWrapper>} />
+        <Route path="/tools/remove-metadata" element={<PageWrapper><RemoveMetadata /></PageWrapper>} />
+        <Route path="/tools/create-pdf" element={<PageWrapper><CreatePdf /></PageWrapper>} />
+        <Route path="/tools/resize-pages" element={<PageWrapper><ResizePages /></PageWrapper>} />
+        <Route path="/tools/ocr-pdf" element={<PageWrapper><OcrPdf /></PageWrapper>} />
+        <Route path="/tools/translate-pdf" element={<PageWrapper><TranslatePdf /></PageWrapper>} />
+        <Route path="/tools/summarize-pdf" element={<PageWrapper><SummarizePdf /></PageWrapper>} />
+        <Route path="/tools/chat-with-pdf" element={<PageWrapper><ChatWithPdf /></PageWrapper>} />
+        <Route path="/tools/compare-pdf" element={<PageWrapper><ComparePdf /></PageWrapper>} />
+        <Route path="/tools/scan-to-pdf" element={<PageWrapper><ScanToPdf /></PageWrapper>} />
+        <Route path="/tools/pdf-viewer" element={<PageWrapper><PdfViewer /></PageWrapper>} />
+        <Route path="/tools/add-image-to-pdf" element={<PageWrapper><AddImageToPdf /></PageWrapper>} />

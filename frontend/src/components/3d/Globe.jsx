@@ -2,9 +2,10 @@ import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
+import { useInView } from 'react-intersection-observer';
 
 // Generates a Fibonacci sphere of points to look like a dotted globe
-function DottedSphere({ count = 3000, radius = 2 }) {
+function DottedSphere({ count = 3000, radius = 2, inView }) {
   const pointsRef = useRef();
 
   const [positions, colors] = useMemo(() => {
@@ -57,7 +58,7 @@ function DottedSphere({ count = 3000, radius = 2 }) {
   }, [count, radius]);
 
   useFrame((state, delta) => {
-    if (pointsRef.current) {
+    if (pointsRef.current && inView) {
       pointsRef.current.rotation.y += delta * 0.15; // Slow rotation
       pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.1; // Gentle wobble
     }
@@ -92,11 +93,11 @@ function DottedSphere({ count = 3000, radius = 2 }) {
 }
 
 // Glowing halo around the globe
-function Halo({ radius = 2.1 }) {
+function Halo({ radius = 2.1, inView }) {
   const meshRef = useRef();
 
   useFrame((state) => {
-    if (meshRef.current) {
+    if (meshRef.current && inView) {
       meshRef.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime) * 0.02);
     }
   });
@@ -116,25 +117,32 @@ function Halo({ radius = 2.1 }) {
 }
 
 export default function Globe() {
-  return (
-    <div style={{ width: '100%', height: '100%', minHeight: '400px', cursor: 'grab' }}>
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-        <ambientLight intensity={0.5} />
-        
-        {/* Core dotted globe */}
-        <DottedSphere count={4000} radius={1.8} />
-        
-        {/* Soft atmospheric glow */}
-        <Halo radius={1.9} />
-        <Halo radius={2.2} />
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0,
+  });
 
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false}
-          autoRotate={false}
-          rotateSpeed={0.5}
-        />
-      </Canvas>
+  return (
+    <div ref={ref} style={{ width: '100%', height: '100%', minHeight: '400px' }}>
+      {inView && (
+        <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+          <ambientLight intensity={0.5} />
+          
+          {/* Core dotted globe */}
+          <DottedSphere count={3000} radius={1.8} inView={inView} />
+          
+          {/* Soft atmospheric glow */}
+          <Halo radius={1.9} inView={inView} />
+          <Halo radius={2.2} inView={inView} />
+
+          <OrbitControls 
+            enableZoom={false} 
+            enablePan={false}
+            autoRotate={false}
+            rotateSpeed={0.5}
+          />
+        </Canvas>
+      )}
     </div>
   );
 }
