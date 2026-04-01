@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://ishu.fun/sitemap.xml
 
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
+# Security
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*.log$

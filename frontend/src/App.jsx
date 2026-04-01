@@ -4,7 +4,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ToolsHub from './pages/ToolsHub';
+import ParticleBackground from './components/ui/ParticleBackground';
 import useLenis from './hooks/useLenis';
+import useScrollAnimations from './hooks/useScrollAnimations';
+import usePageTransition from './hooks/usePageTransition';
 import './styles/globals.css';
 
 // Lazy loading all 80+ distinct tools to adhere to discrete component architecture
@@ -134,14 +137,19 @@ const pageVariants = {
 };
 
 function PageWrapper({ children }) {
+  usePageTransition();
+
   return (
     <motion.div
+      className="page-wrapper"
       initial="initial"
       animate="in"
       exit="out"
       variants={pageVariants}
       style={{
-        willChange: 'opacity, transform'
+        willChange: 'opacity, transform',
+        position: 'relative',
+        zIndex: 1
       }}
     >
       {children}
@@ -152,6 +160,7 @@ function PageWrapper({ children }) {
 function AnimatedRoutes() {
   const location = useLocation();
   useLenis(); // Initialize Lenis globally within the Router context
+  useScrollAnimations(); // Initialize scroll-triggered animations
 
   return (
     <AnimatePresence mode="wait">
@@ -259,6 +268,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ParticleBackground />
       <Navbar />
       <Suspense fallback={<PageLoader />}>
         <AnimatedRoutes />

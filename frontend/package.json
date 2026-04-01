@@ -10,11 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@barba/core": "^2.10.3",
     "@formkit/auto-animate": "^0.9.0",
     "@gsap/react": "^2.1.2",
     "@pdf-lib/fontkit": "^1.1.1",
+    "@react-spring/web": "^10.0.3",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
+    "@splinetool/react-spline": "^4.1.0",
+    "@studio-freight/lenis": "^1.0.42",
+    "@tsparticles/engine": "^3.9.1",
+    "@tsparticles/react": "^3.0.0",
     "animejs": "^4.3.6",
     "clsx": "^2.1.1",
     "countup.js": "^2.10.0",
@@ -24,6 +30,7 @@
     "jspdf": "^4.2.1",
     "jszip": "^3.10.1",
     "lenis": "^1.3.21",
+    "locomotive-scroll": "^5.0.1",
     "lucide-react": "^1.7.0",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^5.6.205",
@@ -31,10 +38,13 @@
     "react-dom": "^19.2.4",
     "react-dropzone": "^15.0.0",
     "react-intersection-observer": "^10.0.3",
+    "react-lottie-player": "^2.1.0",
     "react-router-dom": "^7.13.2",
     "sonner": "^2.0.7",
     "tesseract.js": "^7.0.0",
-    "three": "^0.183.2"
+    "three": "^0.183.2",
+    "tsparticles": "^3.9.1",
+    "velocity-animate": "^1.5.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
