@@ -58,3 +58,27 @@
 .process-btn--processing {
   cursor: wait;
 }
+
+.process-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.process-btn__progress-bar {
+  width: 100%;
+  max-width: 420px;
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 99px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.process-btn__progress-fill {
+  height: 100%;
+  background: var(--fill-color, var(--color-indigo));
+  border-radius: 99px;
+  box-shadow: 0 0 8px var(--fill-color, var(--color-indigo));
+}

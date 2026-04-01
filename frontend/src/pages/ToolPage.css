@@ -7,3 +7,33 @@
   max-width: 780px;
   margin: 0 auto;
 }
+
+.tool-page__error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  color: #FCA5A5;
+  font-size: var(--text-sm);
+}
+
+.tool-page__retry-btn {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #FCA5A5;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.tool-page__retry-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+}

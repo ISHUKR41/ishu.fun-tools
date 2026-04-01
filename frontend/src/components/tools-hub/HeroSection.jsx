@@ -1,11 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Command, Sparkles, ArrowRight, FileText, Zap, Globe, Star } from 'lucide-react';
+import { Search, Command, Sparkles, ArrowRight, FileText, Zap, Globe, Star, ChevronDown } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { CountUp } from 'countup.js';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import ParticleErrorBoundary from '../3d/ParticleErrorBoundary';
 import './HeroSection.css';
+
+const ParticleBackground = lazy(() => import('../3d/ParticleBackground'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -209,6 +212,13 @@ export default function HeroSection({ onSearch }) {
 
   return (
     <section className="hero" id="hero-section" ref={heroRef}>
+      {/* Three.js Particle Background */}
+      <ParticleErrorBoundary>
+        <Suspense fallback={null}>
+          <ParticleBackground />
+        </Suspense>
+      </ParticleErrorBoundary>
+
       {/* Background */}
       <div className="hero__bg">
         <div className="hero__gradient-orb hero__gradient-orb--1" />
