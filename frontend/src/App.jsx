@@ -110,11 +110,11 @@ function PageLoader() {
   );
 }
 
-// Route transition animation variants
+// Route transition animation variants (optimized for performance)
 const pageVariants = {
-  initial: { opacity: 0, y: 15 },
-  in: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
-  out: { opacity: 0, transition: { duration: 0.2, ease: "easeInOut" } },
+  initial: { opacity: 0 },
+  in: { opacity: 1, transition: { duration: 0.25, ease: "easeOut" } },
+  out: { opacity: 0, transition: { duration: 0.15, ease: "easeIn" } },
 };
 
 function PageWrapper({ children }) {
