@@ -21,16 +21,17 @@ export default function useLenis() {
   const lenisRef = useRef(null);
 
   useEffect(() => {
+    // Optimized Lenis configuration for ultra-smooth, lag-free scrolling
     const lenis = new Lenis({
-      duration: 0.8,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.8,
-      smoothTouch: false,
+      wheelMultiplier: 0.8, // Reduced for smoother control
+      touchMultiplier: 2,
+      smoothTouch: false, // Keep false for native touch feel
       infinite: false,
       syncTouch: false,
-      lerp: 0.1,
+      lerp: 0.08, // Reduced for smoother interpolation
       prevent: (node) => node.closest('[data-lenis-prevent]') !== null,
     });
 
@@ -39,12 +40,15 @@ export default function useLenis() {
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    const rafCallback = (time) => { lenis.raf(time * 1000); };
-    gsap.ticker.add(rafCallback);
-    gsap.ticker.lagSmoothing(0);
+    // Use requestAnimationFrame for better performance
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
 
     return () => {
-      gsap.ticker.remove(rafCallback);
       lenis.destroy();
       globalLenis = null;
     };
