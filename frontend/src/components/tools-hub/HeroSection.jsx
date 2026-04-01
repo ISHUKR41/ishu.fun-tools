@@ -85,96 +85,82 @@ export default function HeroSection({ onSearch }) {
     }
   }, [statsInView]);
 
-  // GSAP entrance + ScrollTrigger parallax
+  // GSAP entrance + ScrollTrigger parallax (optimized)
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1) Entrance timeline
+      // 1) Entrance timeline - simplified and faster
       const tl = gsap.timeline({
-        defaults: { ease: 'power4.out' },
-        delay: 0.1,
+        defaults: { ease: 'power3.out' },
+        delay: 0.05,
       });
 
       tl.fromTo(
         badgeRef.current,
-        { opacity: 0, y: 30, scale: 0.9 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.65 }
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.45 }
       )
       .fromTo(
         titleRef.current.querySelectorAll('.hero__title-line'),
-        { opacity: 0, y: 50, skewY: 2 },
-        { opacity: 1, y: 0, skewY: 0, duration: 0.75, stagger: 0.12 },
-        '-=0.35'
-      )
-      .fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, duration: 0.55 },
-        '-=0.4'
-      )
-      .fromTo(
-        searchRef.current,
-        { opacity: 0, y: 20, scale: 0.97 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.5 },
-        '-=0.3'
-      )
-      .fromTo(
-        trendingRef.current,
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.45 },
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.55, stagger: 0.08 },
         '-=0.25'
       )
       .fromTo(
-        statsContainerRef.current?.querySelectorAll('.hero__stat') || [],
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.4, stagger: 0.08 },
+        subtitleRef.current,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.4 },
+        '-=0.3'
+      )
+      .fromTo(
+        searchRef.current,
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.4 },
+        '-=0.25'
+      )
+      .fromTo(
+        trendingRef.current,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.35 },
         '-=0.2'
+      )
+      .fromTo(
+        statsContainerRef.current?.querySelectorAll('.hero__stat') || [],
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.35, stagger: 0.06 },
+        '-=0.15'
       );
 
-      // 2) Parallax on scroll — orbs move at different speeds
+      // 2) Parallax on scroll — reduced scrub for performance
       gsap.to('.hero__gradient-orb--1', {
-        yPercent: -20,
-        xPercent: 5,
+        yPercent: -15,
         ease: 'none',
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 2,
+          scrub: 0.5,
         },
       });
       gsap.to('.hero__gradient-orb--2', {
-        yPercent: 15,
-        xPercent: -5,
+        yPercent: 10,
         ease: 'none',
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 2.5,
-        },
-      });
-      gsap.to('.hero__gradient-orb--3', {
-        yPercent: -10,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.5,
+          scrub: 0.8,
         },
       });
 
-      // 3) Floating shapes handled by CSS animations (see HeroSection.css .fshape--N)
-
-      // 4) Content parallax (text moves up slightly on scroll)
+      // 3) Content parallax (simplified)
       gsap.to('.hero__content', {
-        yPercent: -8,
+        yPercent: -5,
         ease: 'none',
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1,
+          scrub: 0.3,
         },
       });
 
