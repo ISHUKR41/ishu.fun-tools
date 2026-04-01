@@ -43,7 +43,7 @@ export default function ParticleBackground() {
         renderer.setClearColor(0x000000, 0);
         el.appendChild(renderer.domElement);
 
-        const COUNT = window.innerWidth < 768 ? 700 : 1500;
+        const COUNT = window.innerWidth < 768 ? 400 : window.innerWidth < 1200 ? 800 : 1200;
         const positions = new Float32Array(COUNT * 3);
         const colors = new Float32Array(COUNT * 3);
 
