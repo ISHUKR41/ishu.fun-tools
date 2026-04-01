@@ -110,16 +110,40 @@ function PageLoader() {
   );
 }
 
-// Route transition animation variants (optimized for performance)
+// Route transition animation variants (optimized for 60fps performance)
 const pageVariants = {
-  initial: { opacity: 0 },
-  in: { opacity: 1, transition: { duration: 0.25, ease: "easeOut" } },
-  out: { opacity: 0, transition: { duration: 0.15, ease: "easeIn" } },
+  initial: {
+    opacity: 0,
+    y: 8
+  },
+  in: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.2,
+      ease: [0.22, 1, 0.36, 1] // Custom easing for smoother feel
+    }
+  },
+  out: {
+    opacity: 0,
+    transition: {
+      duration: 0.15,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  },
 };
 
 function PageWrapper({ children }) {
   return (
-    <motion.div initial="initial" animate="in" exit="out" variants={pageVariants}>
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      style={{
+        willChange: 'opacity, transform'
+      }}
+    >
       {children}
     </motion.div>
   );

@@ -192,6 +192,24 @@ html.lenis, html.lenis body {
 .gpu {
   transform: translateZ(0);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Fix for text disappearing issues - proper z-index and transform context */
+.text-preserve {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  will-change: auto; /* Only use will-change when actively animating */
+}
+
+/* Prevent text blur on transforms */
+.no-blur {
+  transform: translateZ(0);
+  -webkit-font-smoothing: subpixel-antialiased;
+  backface-visibility: hidden;
 }
 
 /* ─── CONTENT VISIBILITY (below-fold perf) ─── */
@@ -227,6 +245,23 @@ html.lenis, html.lenis body {
   .section {
     padding: var(--space-16) 0;
   }
+
+  /* Improve touch targets on mobile */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Reduce motion on mobile for better performance */
+  .animate-float,
+  .animate-float-slow,
+  .animate-rotate,
+  .animate-morph {
+    animation-duration: 12s;
+  }
 }
 
 @media (max-width: 480px) {
@@ -235,5 +270,45 @@ html.lenis, html.lenis body {
   }
   .section {
     padding: var(--space-12) 0;
+  }
+
+  /* Further reduce animations on small devices */
+  .animate-marquee {
+    animation-duration: 40s;
+  }
+}
+
+/* ─── RESPONSIVE TYPOGRAPHY ─── */
+@media (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* ─── LANDSCAPE MOBILE FIXES ─── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .section {
+    padding: var(--space-8) 0;
+  }
+}
+
+/* ─── HIGH DPI SCREENS ─── */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Sharper rendering on retina displays */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
