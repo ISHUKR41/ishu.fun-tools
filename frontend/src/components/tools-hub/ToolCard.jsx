@@ -1,17 +1,18 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Sparkles, Flame } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import './ToolCard.css';
 
-function ToolCard({ tool, index }) {
+const ToolCard = memo(function ToolCard({ tool, index }) {
   const Icon = LucideIcons[tool.icon] || LucideIcons.FileText;
   const cardRef = useRef(null);
-  const groupDelay = (index % 4) * 60;
+  const groupDelay = Math.min((index % 4) * 40, 120);
 
   useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
+
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -19,7 +20,7 @@ function ToolCard({ tool, index }) {
           io.disconnect();
         }
       },
-      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+      { threshold: 0.01, rootMargin: '50px 0px -10px 0px' }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -75,6 +76,6 @@ function ToolCard({ tool, index }) {
       </div>
     </div>
   );
-}
+});
 
 export default ToolCard;
