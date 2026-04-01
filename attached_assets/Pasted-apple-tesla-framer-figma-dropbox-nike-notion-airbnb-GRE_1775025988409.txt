@@ -1,0 +1,47 @@
+apple , tesla, framer, figma, dropbox, nike, notion, airbnb
+
+GREENSOCK BARBA JS THREE JS PARALLAX SCROLLING REACT SPRING VELOCITY JS ANIME JS GSAP AND MANY MORE OKAY MANY MORE
+
+Ye sare website se inspiration le lena and
+
+Lag free and smooth scrolling hona chahiye
+
+And jitna bhe effect add karna hai kar lena and jitna bhe libraries and tools ka use karna hai kar lena pls
+
+or or bhout kuch hai jo ki sab upar wale .md file mai hai
+
+or jada sare devices ke liye or bhe responsive banao pls pls
+
+sab cheez improve karo pls
+
+svg ka bhe use kar sakte hoo and real map ka use karo agar possible ho to and texts bhe gayab ho jaa raha hai kabhi kabhi
+
+bhout hee jada smoooth and lag free pls
+
+and sare devices ke fully responisve bhe hona chaiye pls
+
+or jada improve karo jitna jada kar sakte hoo
+
+and abhi animtaion ka bhout jada kami hai and 3d ka bhe and maine tumko bhout sari lirbaies and tools and bhout kuch use karna bola hai bus lag nhi karna chiaye sab cheez bhout hee jada smooth and lag free and fully responisve hona chiaye
+
+Implementing Barba.js for page transitions Adding more parallax layers Creating custom SVG animations
+
+bhout hee jada lag kar raha hai pura website jabki maine phela hee bola tha mujhe sab cheez proper smooth hee chiaye and scrolling mai bhe bhout jada lag kar raha hai and smooth scrolling to bilkul bhe nhi kar raha hai
+
+itna jada lag bhout hee jada lag hai yaar and couror ye mouse ko hata q de rahe hoo baar baar
+
+improve karo yaar pls pls soch samaj kar logic and mind ka use karo bro
+
+https://github.com/ISHUKR41/ishu.fun-tools.git
+
+sab cheez karne ke baad push bhe kar dena pls
+
+iske liye tumko jitna bhe libraies and tools and repo ka need ho install kar lena pls
+
+
+
+or jada improve karo pls jitna jada improve ho sake and
+
+
+
+sabse important baat sare ke sare tools show hona chiaye and sare ke sare tools work karne chiaye proper koi demo nhi sab cheez fully working mai hona chiye q ki mujhe isko production karna hai okay 
