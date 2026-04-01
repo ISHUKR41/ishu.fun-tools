@@ -1,5 +1,5 @@
+import { useRef, useEffect } from 'react';
 import { Shield, Trash2, UserX, Lock, Zap, Server } from 'lucide-react';
-import { motion } from 'framer-motion';
 import Globe from '../3d/Globe';
 import './TrustSection.css';
 
@@ -43,6 +43,43 @@ const TRUST_ITEMS = [
 ];
 
 export default function TrustSection() {
+  const gridRef = useRef(null);
+  const globeRef = useRef(null);
+
+  useEffect(() => {
+    const cards = gridRef.current?.querySelectorAll('.trust__card');
+    if (!cards) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('trust__card--visible');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+    );
+    cards.forEach((card) => io.observe(card));
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = globeRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('trust__globe-wrapper--visible');
+          io.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section className="trust section" id="trust-section">
       <div className="container">
@@ -58,35 +95,29 @@ export default function TrustSection() {
               </p>
             </div>
 
-            <div className="trust__grid trust__grid--2col">
+            <div className="trust__grid trust__grid--2col" ref={gridRef}>
               {TRUST_ITEMS.map((item, i) => (
-                <motion.div
+                <div
                   key={item.title}
                   className="trust__card"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  transition={{ duration: 0.45, delay: i * 0.07 }}
+                  style={{ '--delay': `${i * 70}ms` }}
                 >
                   <div className="trust__card-icon" style={{ background: `${item.color}12`, color: item.color }}>
                     <item.icon size={22} />
                   </div>
                   <h3 className="trust__card-title">{item.title}</h3>
                   <p className="trust__card-desc">{item.description}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
-          <motion.div
+          <div
+            ref={globeRef}
             className="trust__globe-wrapper"
-            initial={{ opacity: 0, scale: 0.85 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: 'easeOut' }}
-            viewport={{ once: true }}
           >
             <Globe />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

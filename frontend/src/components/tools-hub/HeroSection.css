@@ -70,6 +70,54 @@
   overflow: visible;
 }
 
+/* ─── FLOATING SHAPE CSS ANIMATIONS (GPU: transform/opacity only) ─── */
+@keyframes fshape-float-1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(6px, -18px); }
+}
+@keyframes fshape-float-2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-8px, 14px); }
+}
+@keyframes fshape-float-3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(5px, -12px); }
+}
+@keyframes fshape-float-4 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(16px); }
+}
+@keyframes fshape-float-5 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-4px, -10px); }
+}
+@keyframes fshape-pulse-6 {
+  0%, 100% { opacity: 0.35; transform: rotate(0deg); }
+  50% { opacity: 0.15; transform: rotate(45deg); }
+}
+@keyframes fshape-pulse-7 {
+  0%, 100% { opacity: 0.35; transform: rotate(0deg); }
+  50% { opacity: 0.12; transform: rotate(-30deg); }
+}
+@keyframes fshape-scale-8 {
+  0%, 100% { transform: scale(1); opacity: 0.12; }
+  50% { transform: scale(1.3); opacity: 0.05; }
+}
+@keyframes fshape-scale-9 {
+  0%, 100% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(0.75); opacity: 0.06; }
+}
+
+.fshape--1 { animation: fshape-float-1 4s ease-in-out infinite; }
+.fshape--2 { animation: fshape-float-2 5s ease-in-out infinite 0.5s; }
+.fshape--3 { animation: fshape-float-3 6s ease-in-out infinite 1s; }
+.fshape--4 { animation: fshape-float-4 4.5s ease-in-out infinite 0.8s; }
+.fshape--5 { animation: fshape-float-5 3.5s ease-in-out infinite 0.3s; }
+.fshape--6 { animation: fshape-pulse-6 5s ease-in-out infinite; }
+.fshape--7 { animation: fshape-pulse-7 6s ease-in-out infinite 1.2s; }
+.fshape--8 { animation: fshape-scale-8 5s ease-in-out infinite; transform-origin: center; }
+.fshape--9 { animation: fshape-scale-9 7s ease-in-out infinite 2s; transform-origin: center; }
+
 /* ─── CONTENT ─── */
 .hero__content {
   display: flex;

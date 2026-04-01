@@ -194,6 +194,13 @@ html.lenis, html.lenis body {
   backface-visibility: hidden;
 }
 
+/* ─── CONTENT VISIBILITY (below-fold perf) ─── */
+.section,
+.section-sm {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
 /* ─── PAGE TRANSITION ─── */
 .page-enter {
   opacity: 0;

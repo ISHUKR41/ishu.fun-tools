@@ -1,36 +1,45 @@
-import { memo } from 'react';
+import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Sparkles, Flame } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
-import { motion } from 'framer-motion';
 import './ToolCard.css';
 
-const ToolCard = memo(function ToolCard({ tool, index }) {
+function ToolCard({ tool, index }) {
   const Icon = LucideIcons[tool.icon] || LucideIcons.FileText;
-  const groupDelay = Math.min(Math.floor(index / 4) * 0.06, 0.24);
+  const cardRef = useRef(null);
+  const groupDelay = (index % 4) * 60;
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('tool-card--visible');
+          io.disconnect();
+        }
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <motion.div
+    <div
+      ref={cardRef}
       className="tool-card"
       id={`tool-${tool.slug}`}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05, margin: '0px 0px -30px 0px' }}
-      transition={{ duration: 0.35, delay: groupDelay, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -5, transition: { duration: 0.18 } }}
-      style={{ '--card-color': tool.color, position: 'relative' }}
+      style={{ '--card-color': tool.color, '--card-delay': `${groupDelay}ms` }}
     >
-      <Link to={`/tools/${tool.slug}`} style={{position: 'absolute', inset: 0, zIndex: 10}} aria-label={tool.name} />
+      <Link to={`/tools/${tool.slug}`} style={{ position: 'absolute', inset: 0, zIndex: 10 }} aria-label={tool.name} />
 
-      {/* Glow effect on hover */}
       <div className="tool-card__glow" />
 
-      {/* Header row */}
       <div className="tool-card__header">
         <div className="tool-card__icon-wrap" style={{ background: `${tool.color}15` }}>
           <Icon size={20} style={{ color: tool.color }} strokeWidth={2} />
         </div>
-
         <div className="tool-card__badges">
           {tool.isNew && (
             <span className="tool-card__badge tool-card__badge--new">
@@ -50,11 +59,9 @@ const ToolCard = memo(function ToolCard({ tool, index }) {
         </div>
       </div>
 
-      {/* Content */}
       <h3 className="tool-card__name">{tool.name}</h3>
       <p className="tool-card__description">{tool.description}</p>
 
-      {/* Footer */}
       <div className="tool-card__footer">
         <div className="tool-card__meta">
           <span className="tool-card__rating">
@@ -66,8 +73,8 @@ const ToolCard = memo(function ToolCard({ tool, index }) {
           Use Tool <ArrowRight size={14} />
         </span>
       </div>
-    </motion.div>
+    </div>
   );
-});
+}
 
 export default ToolCard;

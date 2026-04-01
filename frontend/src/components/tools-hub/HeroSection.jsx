@@ -164,34 +164,7 @@ export default function HeroSection({ onSearch }) {
         },
       });
 
-      // 3) Floating shape animations (CSS-free, pure GSAP)
-      gsap.to('.fshape--1', {
-        y: -18, x: 6, duration: 4, ease: 'sine.inOut', repeat: -1, yoyo: true,
-      });
-      gsap.to('.fshape--2', {
-        y: 14, x: -8, duration: 5, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 0.5,
-      });
-      gsap.to('.fshape--3', {
-        y: -12, x: 5, duration: 6, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1,
-      });
-      gsap.to('.fshape--4', {
-        y: 16, duration: 4.5, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 0.8,
-      });
-      gsap.to('.fshape--5', {
-        y: -10, x: -4, duration: 3.5, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 0.3,
-      });
-      gsap.to('.fshape--6', {
-        opacity: 0.15, rotate: 45, duration: 5, ease: 'sine.inOut', repeat: -1, yoyo: true,
-      });
-      gsap.to('.fshape--7', {
-        opacity: 0.12, rotate: -30, duration: 6, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 1.2,
-      });
-      gsap.to('.fshape--8', {
-        scale: 1.3, opacity: 0.05, duration: 5, ease: 'sine.inOut', repeat: -1, yoyo: true, transformOrigin: 'center',
-      });
-      gsap.to('.fshape--9', {
-        scale: 0.75, opacity: 0.06, duration: 7, ease: 'sine.inOut', repeat: -1, yoyo: true, transformOrigin: 'center', delay: 2,
-      });
+      // 3) Floating shapes handled by CSS animations (see HeroSection.css .fshape--N)
 
       // 4) Content parallax (text moves up slightly on scroll)
       gsap.to('.hero__content', {
