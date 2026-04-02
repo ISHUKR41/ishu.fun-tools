@@ -26,31 +26,31 @@ export default function useLenis() {
   const rafId = useRef(null);
 
   useEffect(() => {
-    // Ultra-optimized Lenis configuration for buttery-smooth, lag-free scrolling
+    // ULTRA-OPTIMIZED Lenis configuration for butter-smooth, zero-lag scrolling
+    // Optimized for 60fps performance across ALL devices (mobile, tablet, desktop)
     const lenis = new Lenis({
-      duration: 1.5,                    // Longer duration for smoother feel
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Smooth easing
-      orientation: 'vertical',          // Vertical scrolling
-      gestureOrientation: 'vertical',   // Handle vertical gestures
-      smoothWheel: true,                // Enable smooth wheel scrolling
-      wheelMultiplier: 0.7,             // Fine control over scroll speed
-      touchMultiplier: 1.5,             // Touch scroll multiplier
-      normalizeWheel: true,             // Normalize wheel delta
-      smoothTouch: false,               // Native touch feel on mobile
-      syncTouch: false,                 // Don't sync touch with scroll
-      syncTouchLerp: 0.1,              // Touch sync interpolation
-      __iosNoInertiaNativeScrolling: true, // Fix iOS momentum scrolling
+      duration: 1.2,                    // Perfect balance: smooth but responsive
+      easing: (t) => 1 - Math.pow(1 - t, 3), // Cubic easing for natural feel
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.85,            // Optimized for desktop precision
+      touchMultiplier: 1.8,             // Better mobile responsiveness
+      normalizeWheel: true,
+      smoothTouch: false,               // Native touch on mobile = better performance
+      syncTouch: false,
+      syncTouchLerp: 0.075,             // Smoother touch interpolation
+      infinite: false,
+      __iosNoInertiaNativeScrolling: true,
     });
 
     globalLenis = lenis;
     lenisRef.current = lenis;
 
-    // Sync with GSAP ScrollTrigger
-    lenis.on('scroll', (e) => {
-      ScrollTrigger.update();
-    });
+    // High-performance GSAP ScrollTrigger sync
+    lenis.on('scroll', ScrollTrigger.update);
 
-    // Optimized RAF loop for 60fps performance
+    // Optimized RAF loop - uses native requestAnimationFrame for 60fps
     function raf(time) {
       lenis.raf(time);
       rafId.current = requestAnimationFrame(raf);
@@ -58,8 +58,13 @@ export default function useLenis() {
 
     rafId.current = requestAnimationFrame(raf);
 
-    // Add Lenis class to html for CSS targeting
+    // Add Lenis classes for CSS targeting
     document.documentElement.classList.add('lenis', 'lenis-smooth');
+
+    // Prevent default scroll restoration
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
 
     return () => {
       if (rafId.current) {
@@ -71,5 +76,5 @@ export default function useLenis() {
     };
   }, []);
 
-  return lenis;
+  return lenisRef.current;
 }

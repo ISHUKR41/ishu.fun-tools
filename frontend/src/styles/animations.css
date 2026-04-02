@@ -277,3 +277,199 @@
   transform: translateX(0);
 }
 
+/* ═══════════════════════════════════════════════════════
+   ADVANCED PARALLAX & MODERN EFFECTS
+   ═══════════════════════════════════════════════════════ */
+
+/* Parallax layers - use data-speed attribute */
+.parallax-layer {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* 3D Tilt effect on cards */
+@keyframes tilt-shaking {
+  0% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+  25% { transform: perspective(1000px) rotateX(2deg) rotateY(2deg); }
+  50% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+  75% { transform: perspective(1000px) rotateX(-2deg) rotateY(-2deg); }
+  100% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
+}
+
+.tilt-hover {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Magnetic effect (use with useMagneticEffect hook) */
+.magnetic {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+/* Glassmorphism hover effect */
+.glass-hover {
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+}
+
+/* SVG Path drawing animation */
+@keyframes draw-path {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.svg-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-path 2s ease-in-out forwards;
+}
+
+/* Ripple effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.ripple-effect:active::after {
+  width: 100%;
+  padding-bottom: 100%;
+  animation: ripple 0.6s ease-out;
+}
+
+/* Neon glow text */
+@keyframes neon-flicker {
+  0%, 100% {
+    text-shadow:
+      0 0 10px #6366f1,
+      0 0 20px #6366f1,
+      0 0 30px #6366f1,
+      0 0 40px #8b5cf6;
+  }
+  50% {
+    text-shadow:
+      0 0 5px #6366f1,
+      0 0 10px #6366f1,
+      0 0 15px #6366f1,
+      0 0 20px #8b5cf6;
+  }
+}
+
+.neon-text {
+  animation: neon-flicker 3s ease-in-out infinite;
+}
+
+/* Bounce on click */
+@keyframes bounce-click {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+}
+
+.bounce-click:active {
+  animation: bounce-click 0.3s ease;
+}
+
+/* Stagger reveal for lists */
+.stagger-container > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-in-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.stagger-container > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-container > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-container > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-container > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-container > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-container > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-container > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-container > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* Smooth border radius morph */
+@keyframes border-morph {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+}
+
+.morph-border {
+  animation: border-morph 8s ease-in-out infinite;
+}
+
+/* Glitch effect for special headings */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch:hover {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+/* Gradient border animation */
+@keyframes gradient-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient-border {
+  position: relative;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #6366f1);
+  background-size: 300% 300%;
+  animation: gradient-border 3s ease infinite;
+  padding: 2px;
+  border-radius: 12px;
+}
+
+.animated-gradient-border-inner {
+  background: var(--color-bg-base);
+  border-radius: 10px;
+}
+
