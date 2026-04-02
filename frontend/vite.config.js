@@ -8,6 +8,13 @@ export default defineConfig({
       fastRefresh: true,
       // Optimize JSX runtime for production
       jsxRuntime: 'automatic',
+      // Babel optimizations
+      babel: {
+        plugins: [
+          // Remove unnecessary dev code in production
+          ['transform-remove-console', { exclude: ['error', 'warn'] }],
+        ],
+      },
     })
   ],
   server: {
@@ -20,7 +27,7 @@ export default defineConfig({
     }
   },
   build: {
-    target: 'esnext',
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
     // Enable minification with esbuild (faster than terser)
     minify: 'esbuild',
     // Optimize CSS
@@ -31,34 +38,62 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       output: {
-        // Aggressive code splitting for optimal caching
+        // ULTRA-AGGRESSIVE code splitting for optimal caching and parallel loading
         manualChunks: (id) => {
-          // React ecosystem
-          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+          // React ecosystem - most stable, cache forever
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/scheduler')) {
             return 'react-vendor';
           }
-          // Three.js and 3D libraries
-          if (id.includes('node_modules/three') || id.includes('node_modules/@react-three')) {
-            return 'three';
-          }
-          // PDF processing (large libraries)
+          // React Router - separate for independent caching
+          if (id.includes('node_modules/react-router')) return 'router';
+
+          // Three.js and 3D libraries - large bundle, lazy loaded
+          if (id.includes('node_modules/three')) return 'three';
+          if (id.includes('node_modules/@react-three')) return 'react-three';
+
+          // PDF processing (large libraries) - split by library
           if (id.includes('node_modules/pdf-lib')) return 'pdf-lib';
           if (id.includes('node_modules/pdfjs-dist')) return 'pdfjs';
           if (id.includes('node_modules/tesseract.js')) return 'tesseract';
-          // Animation libraries
+          if (id.includes('node_modules/jspdf')) return 'jspdf';
+
+          // Animation libraries - separate chunks
           if (id.includes('node_modules/gsap')) return 'gsap';
           if (id.includes('node_modules/framer-motion')) return 'framer';
-          // Other large libraries
+          if (id.includes('node_modules/animejs')) return 'anime';
+
+          // Smooth scroll libraries
           if (id.includes('node_modules/lenis') || id.includes('node_modules/@studio-freight')) {
             return 'lenis';
           }
+          if (id.includes('node_modules/locomotive-scroll')) return 'locomotive';
+
+          // Utility libraries
           if (id.includes('node_modules/fuse.js')) return 'fuse';
-          // Router
-          if (id.includes('node_modules/react-router')) return 'router';
+          if (id.includes('node_modules/clsx') || id.includes('node_modules/class-variance-authority')) {
+            return 'utils';
+          }
+
+          // Icons
+          if (id.includes('node_modules/lucide-react')) return 'icons';
+
+          // UI/Toast libraries
+          if (id.includes('node_modules/sonner')) return 'ui-toast';
+          if (id.includes('node_modules/@tanstack/react-virtual')) return 'virtual';
+
+          // Dropzone
+          if (id.includes('node_modules/react-dropzone')) return 'dropzone';
+
+          // Barba.js
+          if (id.includes('node_modules/@barba')) return 'barba';
+
+          // Spline
+          if (id.includes('node_modules/@splinetool')) return 'spline';
+
           // All other node_modules
           if (id.includes('node_modules/')) return 'vendor';
         },
-        // Optimize chunk names
+        // Optimize chunk names for better caching
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
@@ -72,11 +107,22 @@ export default defineConfig({
           }
           return `assets/[name]-[hash][extname]`;
         },
+        // Additional performance optimizations
+        compact: true,
+        generatedCode: {
+          constBindings: true,
+        },
+      },
+      // Tree-shaking optimizations
+      treeshake: {
+        moduleSideEffects: 'no-external',
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false,
       },
     },
-    chunkSizeWarningLimit: 1000, // Warn if chunks > 1MB
+    chunkSizeWarningLimit: 800, // Warn if chunks > 800KB
     // Optimize bundle
-    reportCompressedSize: false, // Faster builds
+    reportCompressedSize: false, // Faster builds (disable gzip size calculation)
     // Better caching
     cssCodeSplit: true,
   },
@@ -94,17 +140,30 @@ export default defineConfig({
       '@react-three/drei',
       'lenis',
       'fuse.js',
-      'sonner'
+      'sonner',
+      'lucide-react',
+      'clsx',
     ],
     exclude: ['pdfjs-dist', 'tesseract.js'], // Load on demand
     esbuildOptions: {
       // Optimize esbuild
-      target: 'esnext',
+      target: 'es2020',
+      // Remove console in production
+      drop: process.env.NODE_ENV === 'production' ? ['console', 'debugger'] : [],
     },
   },
   // Performance optimizations
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' },
     legalComments: 'none', // Remove license comments
+    // Production optimizations
+    ...(process.env.NODE_ENV === 'production' && {
+      drop: ['console', 'debugger'],
+      pure: ['console.log', 'console.info'],
+    }),
+  },
+  // Resolve optimizations
+  resolve: {
+    dedupe: ['react', 'react-dom', 'three'],
   },
 })

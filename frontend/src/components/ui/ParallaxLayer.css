@@ -1,0 +1,28 @@
+.parallax-layer {
+  position: relative;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translateZ(0);
+}
+
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optimize for performance */
+.parallax-layer--vertical {
+  transform-style: preserve-3d;
+}
+
+.parallax-layer--horizontal {
+  transform-style: preserve-3d;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer {
+    transform: none !important;
+  }
+}
