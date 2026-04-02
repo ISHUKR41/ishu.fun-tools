@@ -5,8 +5,13 @@ import * as THREE from 'three';
 
 function ParticleField() {
   const particlesRef = useRef();
-  // Optimized particle count for performance (reduced from 2000)
-  const particleCount = window.innerWidth < 768 ? 1000 : 1500;
+  // Highly optimized particle count based on device capability
+  const particleCount = useMemo(() => {
+    const width = window.innerWidth;
+    if (width < 640) return 500;  // Mobile phones
+    if (width < 1024) return 800; // Tablets
+    return 1200; // Desktop
+  }, []);
 
   const [positions, colors] = useMemo(() => {
     const positions = new Float32Array(particleCount * 3);
@@ -45,17 +50,26 @@ function ParticleField() {
     return [positions, colors];
   }, [particleCount]);
 
+  // Track frame count for mobile optimization
+  const frameCount = useRef(0);
+  const isMobile = window.innerWidth < 768;
+
   useFrame((state) => {
     if (particlesRef.current) {
       const time = state.clock.getElapsedTime();
+      frameCount.current++;
 
       // Smooth, slow rotation
       particlesRef.current.rotation.x = Math.sin(time * 0.05) * 0.2;
       particlesRef.current.rotation.y = time * 0.02;
       particlesRef.current.rotation.z = Math.cos(time * 0.03) * 0.1;
 
-      // Optimized wave animation (only update every other frame on mobile)
-      if (window.innerWidth >= 768 || state.clock.elapsedTime % 0.032 < 0.016) {
+      // Optimized wave animation
+      // Mobile: Update every 3rd frame (20 FPS for particles, 60 FPS for rotation)
+      // Desktop: Update every frame (60 FPS)
+      const shouldUpdateWave = !isMobile || frameCount.current % 3 === 0;
+
+      if (shouldUpdateWave) {
         const positions = particlesRef.current.geometry.attributes.position.array;
         for (let i = 0; i < particleCount; i++) {
           const i3 = i * 3;
