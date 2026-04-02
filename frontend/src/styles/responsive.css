@@ -1,0 +1,252 @@
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE DESIGN UTILITIES
+   Mobile-first, performance-optimized breakpoints
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── RESPONSIVE CONTAINER ─── */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--space-8);
+  }
+}
+
+/* ─── RESPONSIVE TEXT ─── */
+.text-responsive {
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.6;
+}
+
+.heading-responsive {
+  font-size: clamp(24px, 5vw, 48px);
+  line-height: 1.2;
+}
+
+/* ─── RESPONSIVE GRID ─── */
+.grid-responsive {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, 1fr); /* Mobile: 2 columns */
+}
+
+@media (min-width: 640px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr); /* SM: 2 columns */
+    gap: var(--space-5);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr); /* MD: 3 columns */
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr); /* LG: 4 columns */
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid-responsive {
+    grid-template-columns: repeat(5, 1fr); /* XL: 5 columns */
+    gap: var(--space-8);
+  }
+}
+
+/* ─── MOBILE TOUCH OPTIMIZATIONS ─── */
+@media (max-width: 768px) {
+  /* Larger tap targets for mobile */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px; /* Apple's recommended touch target */
+    min-width: 44px;
+  }
+
+  /* Prevent zoom on input focus (iOS) */
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Remove hover effects on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Optimize animations for mobile */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.3s !important; /* Faster on mobile */
+  }
+}
+
+/* ─── HIGH DPI / RETINA DISPLAYS ─── */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    /* Sharper rendering on retina displays */
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* ─── DARK MODE SUPPORT ─── */
+@media (prefers-color-scheme: dark) {
+  /* Already dark by default, but can be overridden */
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* ─── REDUCED MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable Three.js animations for accessibility */
+  canvas {
+    opacity: 0.3;
+  }
+}
+
+/* ─── PRINT STYLES ─── */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  /* Hide non-essential elements */
+  nav,
+  footer,
+  aside,
+  .particle-background,
+  canvas {
+    display: none !important;
+  }
+}
+
+/* ─── ORIENTATION CHANGES ─── */
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Optimize for landscape mobile */
+  .tools-grid {
+    gap: var(--space-3);
+  }
+}
+
+/* ─── RESPONSIVE UTILITIES ─── */
+/* Hide on mobile */
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide on desktop */
+@media (min-width: 768px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* Show only on tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .show-tablet-only {
+    display: block !important;
+  }
+}
+
+@media not all and (min-width: 768px) and (max-width: 1023px) {
+  .show-tablet-only {
+    display: none !important;
+  }
+}
+
+/* ─── ASPECT RATIO UTILITIES ─── */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* ─── SAFE AREA INSETS (iOS Notch) ─── */
+@supports (padding: max(0px)) {
+  .safe-area-top {
+    padding-top: max(var(--space-4), env(safe-area-inset-top));
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
+  }
+
+  .safe-area-left {
+    padding-left: max(var(--space-4), env(safe-area-inset-left));
+  }
+
+  .safe-area-right {
+    padding-right: max(var(--space-4), env(safe-area-inset-right));
+  }
+}
+
+/* ─── PERFORMANCE HINTS ─── */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Remove will-change after animation */
+.transition-complete {
+  will-change: auto !important;
+}
+
+/* ─── GPU ACCELERATION ─── */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000;
+}

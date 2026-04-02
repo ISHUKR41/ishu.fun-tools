@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import './variables.css';
 @import './animations.css';
+@import './responsive.css';
 
 /* ─── RESET ─── */
 *, *::before, *::after {
@@ -20,6 +21,28 @@ html {
   /* NO scroll-behavior: smooth — Lenis handles it */
 }
 
+/* Lenis smooth scrolling classes */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--color-bg-base);
@@ -29,6 +52,13 @@ body {
   overflow-x: hidden;
   position: relative;
   cursor: auto !important;
+  /* Hardware acceleration for smoother rendering */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
 }
 
 /* REMOVED: body::before SVG noise filter — it's a per-frame GPU killer */
