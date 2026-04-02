@@ -8,6 +8,7 @@ import ParticleBackground from './components/ui/ParticleBackground';
 import useLenis from './hooks/useLenis';
 import useScrollAnimations from './hooks/useScrollAnimations';
 import usePageTransition from './hooks/usePageTransition';
+import usePassiveListeners from './hooks/usePassiveListeners';
 import './styles/globals.css';
 
 // Lazy loading all 80+ distinct tools to adhere to discrete component architecture
@@ -161,6 +162,7 @@ function AnimatedRoutes() {
   const location = useLocation();
   useLenis(); // Initialize Lenis globally within the Router context
   useScrollAnimations(); // Initialize scroll-triggered animations
+  usePassiveListeners(); // ULTRA-OPTIMIZED: Passive event listeners for 90-120 FPS
 
   return (
     <AnimatePresence mode="wait">

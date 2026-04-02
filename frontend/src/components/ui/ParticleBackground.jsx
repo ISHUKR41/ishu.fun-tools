@@ -5,12 +5,18 @@ import * as THREE from 'three';
 
 function ParticleField() {
   const particlesRef = useRef();
-  // Highly optimized particle count based on device capability
+  // ULTRA-optimized particle count for 90-120 FPS across all devices
   const particleCount = useMemo(() => {
     const width = window.innerWidth;
-    if (width < 640) return 500;  // Mobile phones
-    if (width < 1024) return 800; // Tablets
-    return 1200; // Desktop
+    const height = window.innerHeight;
+    const pixelRatio = window.devicePixelRatio || 1;
+
+    // Detect low-end devices
+    const isLowEnd = pixelRatio < 2 && navigator.hardwareConcurrency <= 4;
+
+    if (width < 640) return isLowEnd ? 300 : 500;  // Mobile phones
+    if (width < 1024) return isLowEnd ? 600 : 800; // Tablets
+    return isLowEnd ? 900 : 1200; // Desktop
   }, []);
 
   const [positions, colors] = useMemo(() => {
@@ -50,13 +56,15 @@ function ParticleField() {
     return [positions, colors];
   }, [particleCount]);
 
-  // Track frame count for mobile optimization
+  // Track frame count for ultra-optimized updates
   const frameCount = useRef(0);
   const isMobile = useMemo(() => window.innerWidth < 768, []);
   const isLowEnd = useMemo(() => {
-    // Detect low-end devices
-    const ua = navigator.userAgent.toLowerCase();
-    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua) && window.innerWidth < 768;
+    // Detect low-end devices more accurately
+    const pixelRatio = window.devicePixelRatio || 1;
+    const cpuCores = navigator.hardwareConcurrency || 2;
+    const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
+    return (pixelRatio < 2 || cpuCores <= 4) && isMobileDevice;
   }, []);
 
   useFrame((state) => {
@@ -69,11 +77,12 @@ function ParticleField() {
       particlesRef.current.rotation.y = time * 0.02;
       particlesRef.current.rotation.z = Math.cos(time * 0.03) * 0.1;
 
-      // ULTRA-OPTIMIZED wave animation for smooth 60-120 FPS
-      // Low-end mobile: Update every 4th frame (15 FPS for particles)
-      // Regular mobile: Update every 2nd frame (30 FPS for particles)
-      // Desktop: Update every frame (60 FPS)
-      const updateInterval = isLowEnd ? 4 : isMobile ? 2 : 1;
+      // MAXIMUM FPS optimization: Rotate always (cheap), wave conditionally
+      // Target: 90-120 FPS on desktop, 60 FPS on mobile
+      // Low-end: Update every 5th frame (12-24 FPS particles, 60-120 FPS rotation)
+      // Regular mobile: Every 3rd frame (20-40 FPS particles, 60-120 FPS rotation)
+      // Desktop: Every frame (60-120 FPS everything)
+      const updateInterval = isLowEnd ? 5 : isMobile ? 3 : 1;
       const shouldUpdateWave = frameCount.current % updateInterval === 0;
 
       if (shouldUpdateWave) {
