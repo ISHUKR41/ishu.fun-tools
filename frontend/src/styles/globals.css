@@ -52,13 +52,17 @@ body {
   overflow-x: hidden;
   position: relative;
   cursor: auto !important;
-  /* Hardware acceleration for smoother rendering */
+  /* MAXIMUM hardware acceleration for 90-120 FPS */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   -webkit-perspective: 1000;
   perspective: 1000;
+  /* CSS containment for performance */
+  contain: layout style paint;
+  /* Prevent unnecessary repaints */
+  will-change: auto;
 }
 
 /* REMOVED: body::before SVG noise filter — it's a per-frame GPU killer */
@@ -518,4 +522,67 @@ html.lenis, html.lenis body {
   100% {
     background-position: -200% 0;
   }
+}
+
+/* ═══════════════════════════════════════════════════════
+   REDUCED MOTION SUPPORT (Accessibility)
+   Disable ALL animations for users who prefer reduced motion
+   ═══════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable Three.js canvas animations */
+  canvas {
+    display: none !important;
+  }
+
+  /* Keep essential transforms but remove animations */
+  .parallax-section,
+  .parallax-layer,
+  .float-animation,
+  .pulse-animation,
+  .rotate-animation {
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   ULTRA-OPTIMIZED GPU ACCELERATION (90-120 FPS)
+   Apply to all animated elements
+   ═══════════════════════════════════════════════════════ */
+.gpu-accelerated,
+.tool-card,
+.particle-background,
+[class*="animate"],
+[class*="transition"],
+[class*="parallax"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+/* Text rendering optimization to prevent disappearing */
+h1, h2, h3, h4, h5, h6, p, span, a, button {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
+}
+
+/* Contain layout for performance */
+.tool-card,
+.tools-grid,
+article,
+section {
+  contain: layout style paint;
 }

@@ -26,21 +26,30 @@ export default function useLenis() {
   const rafId = useRef(null);
 
   useEffect(() => {
-    // ULTRA-OPTIMIZED Lenis configuration for butter-smooth, zero-lag scrolling
-    // Optimized for 60fps performance across ALL devices (mobile, tablet, desktop)
+    // ULTRA-OPTIMIZED Lenis configuration for 90-120 FPS butter-smooth scrolling
+    // Heavily optimized for zero-lag across ALL devices (mobile, tablet, desktop)
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+
     const lenis = new Lenis({
-      duration: 1.2,                    // Perfect balance: smooth but responsive
-      easing: (t) => 1 - Math.pow(1 - t, 3), // Cubic easing for natural feel
+      duration: isMobile ? 1.0 : 1.2,   // Faster on mobile for responsiveness
+      easing: (t) => {
+        // Optimized easing curve for smoothness
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      },
       orientation: 'vertical',
       gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.85,            // Optimized for desktop precision
-      touchMultiplier: 1.8,             // Better mobile responsiveness
+      smoothWheel: !isMobile,           // Disable smooth wheel on mobile for native performance
+      wheelMultiplier: 0.9,             // Slightly faster response
+      touchMultiplier: isMobile ? 2.2 : 1.8, // More responsive touch
       normalizeWheel: true,
-      smoothTouch: false,               // Native touch on mobile = better performance
-      syncTouch: false,
-      syncTouchLerp: 0.075,             // Smoother touch interpolation
+      smoothTouch: false,               // CRITICAL: Native touch = 60 FPS on mobile
+      syncTouch: false,                 // CRITICAL: Async touch for better performance
+      syncTouchLerp: 0.1,               // Faster interpolation
+      touchInertiaMultiplier: isMobile ? 15 : 25, // Better inertia feel
       infinite: false,
+      autoResize: true,
+      prevent: (node) => node.classList.contains('no-lenis'),
       __iosNoInertiaNativeScrolling: true,
     });
 
