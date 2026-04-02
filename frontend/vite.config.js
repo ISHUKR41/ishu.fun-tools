@@ -21,15 +21,8 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    // Enable minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console logs in production
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info'], // Remove specific console methods
-      },
-    },
+    // Enable minification with esbuild (faster than terser)
+    minify: 'esbuild',
     // Optimize CSS
     cssMinify: true,
     // Optimize assets
@@ -69,6 +62,7 @@ export default defineConfig({
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
           const info = assetInfo.name.split('.');
           const ext = info[info.length - 1];
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
