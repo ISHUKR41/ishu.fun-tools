@@ -37,52 +37,96 @@ export default function ParticleBackground() {
         const camera = new THREE.PerspectiveCamera(75, el.clientWidth / el.clientHeight, 0.1, 1000);
         camera.position.z = 3;
 
-        renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'high-performance' });
+        renderer = new THREE.WebGLRenderer({
+          alpha: true,
+          antialias: false,
+          powerPreference: 'high-performance',
+          precision: 'lowp' // Lower precision for better mobile performance
+        });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         renderer.setSize(el.clientWidth, el.clientHeight);
         renderer.setClearColor(0x000000, 0);
         el.appendChild(renderer.domElement);
 
-        const COUNT = window.innerWidth < 768 ? 400 : window.innerWidth < 1200 ? 800 : 1200;
+        // Adaptive particle count for 90-120 FPS
+        const width = window.innerWidth;
+        const isMobile = width < 768;
+        const isTablet = width >= 768 && width < 1024;
+        const COUNT = isMobile ? 300 : isTablet ? 600 : 1000;
+
         const positions = new Float32Array(COUNT * 3);
         const colors = new Float32Array(COUNT * 3);
+        const sizes = new Float32Array(COUNT);
 
         const palette = [
           new THREE.Color(0x6366f1),
           new THREE.Color(0x8b5cf6),
           new THREE.Color(0xec4899),
           new THREE.Color(0x06b6d4),
+          new THREE.Color(0x14b8a6),
         ];
 
+        // Create particle field with depth layers
         for (let i = 0; i < COUNT; i++) {
-          positions[i * 3] = (Math.random() - 0.5) * 12;
-          positions[i * 3 + 1] = (Math.random() - 0.5) * 8;
-          positions[i * 3 + 2] = (Math.random() - 0.5) * 6;
+          positions[i * 3] = (Math.random() - 0.5) * 14;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 8;
+
           const c = palette[Math.floor(Math.random() * palette.length)];
-          colors[i * 3] = c.r; colors[i * 3 + 1] = c.g; colors[i * 3 + 2] = c.b;
+          colors[i * 3] = c.r;
+          colors[i * 3 + 1] = c.g;
+          colors[i * 3 + 2] = c.b;
+
+          // Vary particle sizes for more depth
+          sizes[i] = Math.random() * 0.03 + 0.01;
         }
 
         geo = new THREE.BufferGeometry();
         geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        mat = new THREE.PointsMaterial({ size: 0.022, vertexColors: true, transparent: true, opacity: 0.5 });
+        geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+        mat = new THREE.PointsMaterial({
+          size: 0.025,
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.6,
+          sizeAttenuation: true,
+          blending: THREE.AdditiveBlending
+        });
+
         const points = new THREE.Points(geo, mat);
         scene.add(points);
 
         let mx = 0, my = 0;
-        const onMouse = (e) => { mx = (e.clientX / window.innerWidth - 0.5) * 2; my = -(e.clientY / window.innerHeight - 0.5) * 2; };
-        const onResize = () => { camera.aspect = el.clientWidth / el.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(el.clientWidth, el.clientHeight); };
+        const onMouse = (e) => {
+          mx = (e.clientX / window.innerWidth - 0.5) * 2;
+          my = -(e.clientY / window.innerHeight - 0.5) * 2;
+        };
+
+        const onResize = () => {
+          camera.aspect = el.clientWidth / el.clientHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(el.clientWidth, el.clientHeight);
+        };
+
         window.addEventListener('mousemove', onMouse, { passive: true });
         window.addEventListener('resize', onResize, { passive: true });
 
         let last = 0;
         const loop = (t) => {
           animId = requestAnimationFrame(loop);
-          const dt = Math.min((t - last) / 1000, 0.05); last = t;
-          points.rotation.y += dt * 0.03;
-          points.rotation.x += dt * 0.01;
-          camera.position.x += (mx * 0.3 - camera.position.x) * 0.03;
-          camera.position.y += (my * 0.15 - camera.position.y) * 0.03;
+          const dt = Math.min((t - last) / 1000, 0.05);
+          last = t;
+
+          // Smooth rotation for depth effect
+          points.rotation.y += dt * 0.04;
+          points.rotation.x += dt * 0.015;
+
+          // Subtle mouse parallax
+          camera.position.x += (mx * 0.4 - camera.position.x) * 0.04;
+          camera.position.y += (my * 0.2 - camera.position.y) * 0.04;
+
           renderer.render(scene, camera);
         };
         loop(0);
