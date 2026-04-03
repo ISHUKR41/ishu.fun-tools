@@ -32,9 +32,9 @@ export default defineConfig({
     minify: 'esbuild',
     // Optimize CSS
     cssMinify: true,
-    // Optimize assets
-    assetsInlineLimit: 4096, // Inline assets < 4kb
-    // Better source maps for debugging
+    // Optimize assets - inline smaller assets for fewer requests
+    assetsInlineLimit: 8192, // Inline assets < 8kb (increased for better performance)
+    // Disable source maps in production
     sourcemap: false,
     rollupOptions: {
       output: {
@@ -125,6 +125,13 @@ export default defineConfig({
     reportCompressedSize: false, // Faster builds (disable gzip size calculation)
     // Better caching
     cssCodeSplit: true,
+    // Additional optimizations for production
+    ...(process.env.NODE_ENV === 'production' && {
+      minify: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    }),
   },
   optimizeDeps: {
     include: [

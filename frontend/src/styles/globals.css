@@ -1,7 +1,5 @@
-/* ═══════════════════════════════════════════════════════
-   ISHU.FUN TOOLS — GLOBAL STYLES (Performance Optimized)
-   ═══════════════════════════════════════════════════════ */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* ─── FONT OPTIMIZATION (CRITICAL FOR TEXT RENDERING) ─── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap&text-rendering=optimizeSpeed');
 @import './variables.css';
 @import './animations.css';
 @import './responsive.css';
@@ -18,7 +16,15 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* CRITICAL: Prevent text from disappearing during scroll/animations */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   /* NO scroll-behavior: smooth — Lenis handles it */
+  scroll-behavior: auto !important;
+  /* Force GPU acceleration on root */
+  transform: translateZ(0);
+  will-change: scroll-position;
 }
 
 /* Lenis smooth scrolling classes */
@@ -52,16 +58,26 @@ body {
   overflow-x: hidden;
   position: relative;
   cursor: auto !important;
-  /* MAXIMUM hardware acceleration for 90-120 FPS */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+
+  /* HYPER-OPTIMIZED GPU acceleration for 90-120 FPS */
+  -webkit-transform: translateZ(0) scale(1);
+  transform: translateZ(0) scale(1);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
-  /* CSS containment for performance */
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+
+  /* CSS containment for maximum performance */
   contain: layout style paint;
-  /* Prevent unnecessary repaints */
+
+  /* Font rendering optimization - PREVENTS TEXT DISAPPEARING */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: common-ligatures;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+
+  /* will-change management - auto until animating */
   will-change: auto;
 }
 

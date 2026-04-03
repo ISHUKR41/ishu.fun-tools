@@ -1,0 +1,72 @@
+/* Optimized Image Component Styles */
+.optimized-image {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.optimized-image__placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(10px);
+  transform: scale(1.1);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.optimized-image.loaded .optimized-image__placeholder {
+  opacity: 0;
+}
+
+.optimized-image__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.optimized-image.loaded .optimized-image__img {
+  opacity: 1;
+}
+
+/* Background Image Variant */
+.optimized-bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.optimized-bg-image.loaded {
+  opacity: 1;
+}
+
+/* Responsive aspect ratios */
+.optimized-image--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.optimized-image--4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.optimized-image--1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.optimized-image--21-9 {
+  aspect-ratio: 21 / 9;
+}
