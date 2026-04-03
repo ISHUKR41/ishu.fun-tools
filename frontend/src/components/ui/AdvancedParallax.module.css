@@ -1,0 +1,195 @@
+.parallax-layer {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.parallax-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* Parallax Background Layers */
+.parallax-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.parallax-bg-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Gradient Orbs - Slowest layer (far background) */
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%);
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, transparent 70%);
+  bottom: 15%;
+  right: 15%;
+  animation-delay: -10s;
+}
+
+/* Gradient Mesh - Medium speed layer */
+.gradient-mesh {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background:
+    conic-gradient(from 180deg at 50% 50%,
+      rgba(99, 102, 241, 0.08) 0deg,
+      rgba(139, 92, 246, 0.06) 72deg,
+      rgba(236, 72, 153, 0.06) 144deg,
+      rgba(59, 130, 246, 0.06) 216deg,
+      rgba(6, 182, 212, 0.06) 288deg,
+      rgba(99, 102, 241, 0.08) 360deg
+    );
+  opacity: 0.6;
+  animation: meshRotate 40s linear infinite;
+}
+
+/* Floating Shapes - Fastest layer (foreground) */
+.floating-shape {
+  position: absolute;
+  opacity: 0.12;
+  animation: floatShape 15s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 200px;
+  height: 200px;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  top: 20%;
+  right: 20%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 50%;
+  bottom: 30%;
+  left: 25%;
+  animation-delay: -5s;
+}
+
+.shape-3 {
+  width: 180px;
+  height: 180px;
+  border: 2px solid rgba(236, 72, 153, 0.3);
+  border-radius: 20% 80% 20% 80% / 80% 20% 80% 20%;
+  top: 50%;
+  left: 10%;
+  animation-delay: -10s;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 40px) scale(0.95);
+  }
+  75% {
+    transform: translate(40px, 20px) scale(1.03);
+  }
+}
+
+@keyframes meshRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floatShape {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(20px, -40px) rotate(90deg);
+  }
+  50% {
+    transform: translate(-30px, 30px) rotate(180deg);
+  }
+  75% {
+    transform: translate(30px, 10px) rotate(270deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gradient-orb {
+    filter: blur(50px);
+  }
+
+  .orb-1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .orb-2 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .floating-shape {
+    opacity: 0.08;
+  }
+
+  .shape-1 {
+    width: 120px;
+    height: 120px;
+  }
+
+  .shape-2 {
+    width: 100px;
+    height: 100px;
+  }
+
+  .shape-3 {
+    width: 110px;
+    height: 110px;
+  }
+}

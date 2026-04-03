@@ -5,6 +5,8 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ToolsHub from './pages/ToolsHub';
 import ParticleBackground from './components/ui/ParticleBackground';
+import CustomCursor from './components/ui/CustomCursor';
+import { ParallaxBackground } from './components/ui/AdvancedParallax';
 import FPSMonitor from './components/ui/FPSMonitor';
 import useLenis from './hooks/useLenis';
 import useScrollAnimations from './hooks/useScrollAnimations';
@@ -278,6 +280,8 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
+      <CustomCursor />
+      <ParallaxBackground />
       <ParticleBackground />
       <Navbar />
       <Suspense fallback={<PageLoader />}>
