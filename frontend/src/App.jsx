@@ -5,10 +5,12 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ToolsHub from './pages/ToolsHub';
 import ParticleBackground from './components/ui/ParticleBackground';
+import FPSMonitor from './components/ui/FPSMonitor';
 import useLenis from './hooks/useLenis';
 import useScrollAnimations from './hooks/useScrollAnimations';
 import usePageTransition from './hooks/usePageTransition';
 import usePassiveListeners from './hooks/usePassiveListeners';
+import useServiceWorker from './hooks/useServiceWorker';
 import './styles/globals.css';
 
 // Lazy loading all 80+ distinct tools to adhere to discrete component architecture
@@ -163,13 +165,18 @@ function AnimatedRoutes() {
   useLenis(); // Initialize Lenis globally within the Router context
   useScrollAnimations(); // Initialize scroll-triggered animations
   usePassiveListeners(); // ULTRA-OPTIMIZED: Passive event listeners for 90-120 FPS
+  useServiceWorker(); // Enable offline support and instant loading
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Navigate to="/tools" replace />} />
-        
-        <Route path="/tools" element={<PageWrapper><ToolsHub /></PageWrapper>} />
+    <>
+      {/* FPS Monitor - Development only */}
+      <FPSMonitor enabled={import.meta.env.DEV} />
+
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Navigate to="/tools" replace />} />
+
+          <Route path="/tools" element={<PageWrapper><ToolsHub /></PageWrapper>} />
         
         <Route path="/tools/merge-pdf" element={<PageWrapper><MergePdf /></PageWrapper>} />
         <Route path="/tools/split-pdf" element={<PageWrapper><SplitPdf /></PageWrapper>} />
@@ -264,6 +271,7 @@ function AnimatedRoutes() {
         <Route path="/tools/:slug" element={<PageWrapper><ToolPage /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
+    </>
   );
 }
 

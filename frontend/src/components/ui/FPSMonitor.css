@@ -1,0 +1,131 @@
+/* FPS Monitor Styles */
+.fps-monitor {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #fff;
+  backdrop-filter: blur(20px);
+  min-width: 240px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  /* Prevent FPS monitor from affecting layout */
+  pointer-events: none;
+  user-select: none;
+}
+
+.fps-monitor__header {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fps-monitor__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6366f1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fps-monitor__metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.fps-monitor__metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fps-monitor__label {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fps-monitor__value {
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.fps-monitor__value--large {
+  font-size: 32px;
+}
+
+.fps-monitor__device {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fps-monitor__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.fps-monitor__row .fps-monitor__label {
+  font-size: 10px;
+}
+
+.fps-monitor__row .fps-monitor__value {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.fps-monitor__target {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fps-monitor__target-label {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.fps-monitor__target-values {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fps-monitor__target-value {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .fps-monitor {
+    top: 10px;
+    right: 10px;
+    padding: 12px;
+    min-width: 200px;
+    font-size: 10px;
+  }
+
+  .fps-monitor__value--large {
+    font-size: 24px;
+  }
+
+  .fps-monitor__value {
+    font-size: 14px;
+  }
+}
