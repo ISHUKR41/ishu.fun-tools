@@ -1,0 +1,25 @@
+.custom-cursor {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.custom-cursor.hovering {
+  width: 40px !important;
+  height: 40px !important;
+  backgroundColor: rgba(139, 92, 246, 0.6) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.cursor-glow {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.cursor-glow.hovering {
+  width: 120px !important;
+  height: 120px !important;
+  top: -60px !important;
+  left: -60px !important;
+}

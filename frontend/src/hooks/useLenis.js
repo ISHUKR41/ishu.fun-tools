@@ -34,29 +34,34 @@ export default function useLenis() {
     const isLowEnd = (window.devicePixelRatio || 1) < 2 || (navigator.hardwareConcurrency || 2) <= 4;
 
     const lenis = new Lenis({
-      // Adaptive duration based on device capability
-      duration: isMobile ? 0.8 : isTablet ? 1.0 : 1.2,
-      // Ultra-smooth cubic-bezier easing
-      easing: (t) => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2,
+      // ULTRA-OPTIMIZED duration for instant response with smooth feel
+      duration: isMobile ? 0.7 : isTablet ? 0.9 : 1.0,
+      // Premium easing curve (Apple/Framer-style)
+      easing: (t) => {
+        // Custom ease-out-expo for ultra-smooth deceleration
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+      },
       orientation: 'vertical',
       gestureOrientation: 'vertical',
-      // CRITICAL: Disable smooth wheel on mobile for native 60 FPS scrolling
+      // CRITICAL: Adaptive smooth wheel - enable only on desktop for butter-smooth scrolling
       smoothWheel: !isMobile,
-      // Optimized multipliers for responsive feel
-      wheelMultiplier: isLowEnd ? 1.0 : 0.9,
-      touchMultiplier: isMobile ? 2.5 : isTablet ? 2.0 : 1.8,
+      // Ultra-responsive multipliers - reduced for tighter control
+      wheelMultiplier: isLowEnd ? 0.8 : 0.7,
+      touchMultiplier: isMobile ? 2.2 : isTablet ? 2.0 : 1.5,
       normalizeWheel: true,
       // CRITICAL: Native touch scrolling = instant 60 FPS on all mobile devices
       smoothTouch: false,
       syncTouch: false,
-      syncTouchLerp: 0.075,  // Faster interpolation for snappier feel
-      touchInertiaMultiplier: isMobile ? 12 : isTablet ? 18 : 25,
+      syncTouchLerp: 0.1,  // Balanced interpolation for smooth yet responsive feel
+      touchInertiaMultiplier: isMobile ? 15 : isTablet ? 20 : 28,
       infinite: false,
       autoResize: true,
-      // Allow disabling lenis on specific elements
+      // Allow disabling lenis on specific elements (dropzones, modals, etc.)
       prevent: (node) => node.classList.contains('no-lenis') || node.closest('.no-lenis'),
-      // iOS-specific optimization
+      // iOS-specific optimization for native momentum scrolling
       __iosNoInertiaNativeScrolling: true,
+      // Performance optimization - lerp affects smoothing intensity
+      lerp: isMobile ? 0.1 : isLowEnd ? 0.08 : 0.07,
     });
 
     globalLenis = lenis;
